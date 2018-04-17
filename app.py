@@ -1,5 +1,4 @@
 from flask import Flask
-from flask import abort, redirect, url_for
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -17,5 +16,6 @@ def upload_file():
 
 
 @app.route('/tracks')
-def login():
-    return redirect(url_for('https://soundcloud.com/peppuz/tracks'))
+def soundcloud():
+	from flask import abort, redirect, url_for
+	return redirect(url_for('https://soundcloud.com/peppuz/tracks'))
