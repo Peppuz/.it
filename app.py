@@ -7,18 +7,10 @@ app = Flask(__name__)
 def index():
 	return "Pz"
 
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        f = request.files['the_file']
-        f.save('/var/www/uploads/' + secure_filename(f.filename))
-
-
-@app.route('/tracks')
+@app.route("/tracks")
 def soundcloud():
 	return redirect(url_for('https://soundcloud.com/peppuz/tracks'))
 
-@app.route('/fb')
+@app.route("/fb")
 def facebook():
 	return app.redirect(url_for('https://facebook.com/p3ppu'))
