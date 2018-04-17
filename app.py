@@ -21,4 +21,4 @@ def soundcloud():
 
 @app.route('/fb')
 def facebook():
-	return redirect(url_for('https://facebook.com/p3ppu'))
+	return app.redirect(url_for('https://facebook.com/p3ppu'))
