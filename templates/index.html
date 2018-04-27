@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <title>Peppuz ❤️ </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='demo.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='component.css') }}" />
+		<script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
+    <style media="screen">
+      /* Patter */
+      .bg{
+        background-image: url('static/bg.jpeg');
+        background-repeat: repeat;
+      }
+
+      /* Spinning Gear */
+      .image{
+          width: 120px;
+          height: 120px;
+          -webkit-animation:spin 5s linear infinite;
+          -moz-animation:spin 5s linear infinite;
+          animation:spin 5s linear infinite;
+      }
+      @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+      @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+      @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+      /* sections */
+      nav {
+      }
+
+      a {
+          margin: 0 10px 0 10px;
+          text-decoration: none !important;
+          color: white;
+      }
+
+      html {
+          height: 100%;
+      }
+
+      body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+      }
+
+      .section {
+          height: 100%;
+          padding-top: 20px;
+      }
+
+    </style>
+  </head>
+  <body class="bg">
+
+    <main class="section container-fluid m-0 row justify-content-center align-items-center">
+      <!-- GEAR -->
+      <div class="container-fluid d-flex justify-content-center  ">
+        <div class="justify-content-center">
+          <a href="#">
+            <img src="{{url_for('static', filename='gear_white.png')}}" class="img image mx-auto" style="width:100px; height:100px">
+          </a>
+        </div>
+      </div>
+      <!-- PEPPUZ -->
+      <div class="container d-flex justify-content-center">
+        <div class="">
+          <h1 class="white m-auto" style="font-size:300%">Peppuz</h1>
+        </div>
+      </div>
+      <!-- Buttons -->
+      <nav class="text-center cl-effect-9">
+        <div class="mx-auto">
+          <a class="linch text-center" id="Dev" href="#">Tha Code</a>
+        </div>
+        <div class="mx-auto">
+          <a class=" linch text-center" id="Dev" href="#">Tha Sound</a>
+        </div>
+        <div class="mx-auto">
+          <a class="linch text-center" id="Dev" href="#">Tha Contacts</a>
+        </div>
+      </nav>
+    </main>
+
+    <section class="section" id="Dev">
+      <div class="container mt-5 d-flex justify-content-center">
+        <a href="#" class="justify-content-center text-center">
+          <!-- TODO: if adroid link to Google Play -->
+          <!-- <img class="img-fluid w-25 mx-auto" src="{{url_for('static', filename='ostp_icon.png')}}" class="img" style="" > -->
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="Sound">
+
+    </section>
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $('.linch').click(function() {
+          var id = $(this).attr('id');
+          console.log(id);
+          $('html, body').animate({
+              scrollTop: ($('#' + id + '.section').offset().top)
+          }, 1000);
+      });
+    </script>
+  </body>
+</html>
