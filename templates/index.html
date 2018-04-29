@@ -73,13 +73,20 @@
           <h1 class="white m-auto" style="font-size:300%">Peppuz</h1>
         </div>
       </div>
+
+      <div class="text">
+        <form method="GET" action="https://ddg.gg/" autocomplete="off">
+          <input type="text" name="q" placeholder="Search..." autofocus>
+        </form>
+      </div>
+
       <!-- Buttons -->
       <nav class="text-center cl-effect-1">
         <div class="mx-auto">
           <a class="linch text-center" id="Dev" href="#">Projects</a>
         </div>
         <div class="mx-auto">
-          <a class=" linch text-center" href="{{url_for('/tracks')}}">Sounds</a>
+          <a class=" linch text-center" href="{{url_for(redirect('/tracks'))}}">Sounds</a>
         </div>
         <div class="mx-auto">
           <a class="linch text-center" id="Contacts" href="#">Contacts</a>
