@@ -6,7 +6,6 @@ app = Flask(__name__)
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
-	print(request)
 	return render_template('index.html')
 
 @app.route("/spendTheCash")
@@ -31,6 +30,8 @@ def facebook():
 def youtube2():
 	return redirect('https://ddg.gg')
 
+
+# Fondo Danilo Dolci Generator & Uploder static pages 
 @app.route("/fdd", methods=['POST', 'GET'])
 def fondoDaniloDolci():
 	"""
@@ -43,8 +44,7 @@ def fondoDaniloDolci():
 	title = ''
 	year  = ''
 	# TODO: add auto set Year from currentDate
-	return  "problem solved"
-
+	return  jsonify(request.form)
 	if request.method == 'POST':
 		for key, val in request.form:
 			if key == 'title' and not val:
