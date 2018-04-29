@@ -17,6 +17,13 @@
         background-repeat: repeat;
       }
 
+      .searchbar{
+        border: solid 1px white;
+        border-top: none;
+        border-radius: 10px;
+        border-bottom: none;
+      }
+
       /* Spinning Gear */
       .image{
           width: 120px;
@@ -60,33 +67,38 @@
 
     <main class="section container-fluid m-0 row justify-content-center align-items-center">
       <!-- GEAR -->
-      <div class="container-fluid d-flex justify-content-center  ">
+      <div class="container row d-flex justify-content-center  ">
         <div class="justify-content-center">
           <a href="#">
             <img src="{{url_for('static', filename='gear_white.png')}}" class="img image mx-auto" style="width:100px; height:100px">
           </a>
         </div>
       </div>
+
       <!-- PEPPUZ -->
-      <div class="container d-flex justify-content-center">
+      <div class="container row d-flex justify-content-center">
         <div class="">
           <h1 class="white m-auto" style="font-size:300%">Peppuz</h1>
         </div>
       </div>
 
-      <div class="text">
-        <form method="GET" action="https://ddg.gg/" autocomplete="off">
-          <input type="text" name="q" placeholder="Search..." autofocus>
+      <!-- SEARCHBRA -->
+      <div class="container row d-flex justify-content-center">
+        <form class="form-group" method="GET" action="https://ddg.gg/" autocomplete="off">
+          <div class="container-fluid h-25 row searchbar">
+            <img class="col-3 img-fluid w-25" src="{{ url_for('static', filename="ddg.svg") }}" alt="">
+            <input type="text" class="col-7 form-control offset-2" name="q" placeholder="Search..." autofocus>
+          </div>
         </form>
       </div>
 
       <!-- Buttons -->
-      <nav class="text-center cl-effect-1">
+      <nav class="container row text-center cl-effect-1">
         <div class="mx-auto">
           <a class="linch text-center" id="Dev" href="#">Projects</a>
         </div>
         <div class="mx-auto">
-          <a class=" linch text-center" href="{{url_for(redirect('/tracks'))}}">Sounds</a>
+          <a class=" linch text-center" href="{{url_for('soundcloud')}}">Sounds</a>
         </div>
         <div class="mx-auto">
           <a class="linch text-center" id="Contacts" href="#">Contacts</a>
