@@ -18,7 +18,7 @@
       }
 
       .searchbar{
-        border: solid 1px white;
+        border: solid 1px transparent;
         border-top: none;
         border-radius: 10px;
         border-bottom: none;
@@ -37,9 +37,6 @@
       @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
       /* sections */
-      nav {
-      }
-
       a {
           margin: 0 10px 0 10px;
           text-decoration: none !important;
@@ -61,11 +58,19 @@
           padding-top: 20px;
       }
 
+      .searchbar-input{
+	border-radius: 13px;
+	border: transparent solid 1px;	
+	margin: 0;
+ 
+      }
+
+
     </style>
   </head>
   <body class="bg">
 
-    <main class="section container-fluid m-0 row justify-content-center align-items-center">
+    <main class="section container-fluid row justify-content-center align-items-center">
       <!-- GEAR -->
       <div class="container row d-flex justify-content-center  ">
         <div class="justify-content-center">
@@ -86,15 +91,20 @@
       <div class="container row d-flex justify-content-center">
         <form class="form-group" method="GET" action="https://ddg.gg/" autocomplete="off">
           <div class="container-fluid h-25 row searchbar">
-            <img class="col-3 img-fluid w-25" src="{{ url_for('static', filename="ddg.svg") }}" alt="">
-            <input type="text" class="col-7 form-control offset-2" name="q" placeholder="Search..." autofocus>
+            <img class="col-3 img-fluid w-25" src="{{ url_for('static', filename="ddg.svg") }}">
+            <input type="text" class="col-9 searchbar-input " name="q" placeholder="Search..." autofocus>
           </div>
         </form>
       </div>
 
+	<div class="container" id="DeviceInfo">
+		<p class="text-center"> Your're currently connected with </p>
+		
+	</div>
+
       <!-- Buttons -->
-      <nav class="container row text-center cl-effect-1">
-        <div class="mx-auto">
+      <nav class="container row text-center cl-effect-9">
+        <div class="col mx-auto">
           <a class="linch text-center" id="Dev" href="#">Projects</a>
         </div>
         <div class="mx-auto">
