@@ -30,11 +30,7 @@ def facebook():
 def youtube2():
 	return redirect('https://ddg.gg')
 
-<<<<<<< HEAD
 @app.route('/fdd' methods=['POST'])
-=======
-@app.route('/fdd' method='POST')
->>>>>>> cf0aceee6a7da6f80ca80d582bd7ffb08a9cecf9
 def fondoDaniloDolci():
 	"""
 		* takes the POST data
