@@ -30,7 +30,7 @@ def facebook():
 def youtube2():
 	return redirect('https://ddg.gg')
 
-@app.route('/fdd' methods=['POST'])
+@app.route("/fdd" methods=['POST', 'GET'])
 def fondoDaniloDolci():
 	"""
 		* takes the POST data
@@ -42,7 +42,7 @@ def fondoDaniloDolci():
 	title = ''
 	year  = ''
 	# TODO: add auto set Year from currentDate
-	return  jsonify(request.POST)
+	return  jsonify(request.form)
 
 	if request.method == 'POST':
 		for key, val in request.form:
@@ -61,4 +61,4 @@ def fondoDaniloDolci():
 
 
 
-	# return render_template('index.html')
+ 	# return render_template('index.html')
