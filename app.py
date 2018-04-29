@@ -47,7 +47,7 @@ def fondoDaniloDolci():
 	if request.method == 'POST':
 		for key, val in request.form:
 			if key == 'title' and not val:
-				return 'Errore: non è stato inserito alcun Titolo! \nTorna indietro e ricompila il modulo correttamente.'
+				return "Errore: non e' stato inserito alcun Titolo! <br> Torna indietro e ricompila il modulo correttamente."
 			else:
 				title = val
 			if key == 'year' and not val:
