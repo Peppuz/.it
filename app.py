@@ -4,8 +4,9 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 # ROUTES
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
+	print(request)
 	return render_template('index.html')
 
 @app.route("/spendTheCash")
@@ -56,8 +57,5 @@ def fondoDaniloDolci():
 			if key[0:7] == 'buttons-':
 				# buttons.append(val)
 				print("yes it works Now append something ")
-
-
-
 
  	# return render_template('index.html')
