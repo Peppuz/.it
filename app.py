@@ -42,7 +42,7 @@ def fondoDaniloDolci():
 	title = ''
 	year  = ''
 	# TODO: add auto set Year from currentDate
-	return  jsonify(request.form)
+	return  "problem solved"
 
 	if request.method == 'POST':
 		for key, val in request.form:
@@ -52,11 +52,10 @@ def fondoDaniloDolci():
 				title = val
 			if key == 'year' and not val:
 				year = val
-
-			# TODO: Check encoding for URI UTF-8
 			# TODO: ADD button to array as Dictionary with title,url
 			if key[0:7] == 'buttons-':
-				buttons.append(val)
+				# buttons.append(val)
+				print("yes it works Now append something ")
 
 
 
