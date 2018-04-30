@@ -6,7 +6,6 @@ app = Flask(__name__)
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
-	# r = request.args.get('note, '')
 	return render_template('index.html')
 
 @app.route("/spendTheCash")
@@ -27,10 +26,30 @@ def soundcloud():
 def facebook():
 	return redirect('https://facebook.com/p3ppu')
 
+@app.route("/ig")
+def instagram():
+	return redirect("https://instagram.com/peppuz_")
+
+@app.route("/tg")
+def telegram():
+	return redirect('https://t.me/peppu_z')
+
 @app.route("/2stoned")
 def youtube2():
 	return redirect('https://ddg.gg')
 
+
+# DemCar redirect
+@app.route('/dc')
+@app.route('/demcar')
+def demcar():
+	return redirect("http://demcar.it")
+
+# Fondo Danilo Dolci redirect
+@app.route("/fdd")
+@app.route("/fondodanilodolci")
+def fdd():
+	return redirect("http://fondodanilodolci.it")
 
 # Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd", methods=['POST', 'GET'])
@@ -58,5 +77,5 @@ def fondoDaniloDolci():
 			if key[0:7] == 'buttons-':
 				# buttons.append(val)
 				print("yes it works Now append something ")
-
+	# r = request.args.get('note, '')
  	# return render_template('index.html')

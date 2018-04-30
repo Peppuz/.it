@@ -32,6 +32,7 @@
       height: 100%;
     }
 
+    .w-10{ width: 15%; }
     .bg {
       background-image: url('static/bg.jpeg');
       background-repeat: repeat;
@@ -146,36 +147,49 @@
     <div class="container text-center">
       <div class="col">
         <a href="#"><!-- TODO: if adroid link to Google Play -->
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-25">
+          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-10">
         </a>
         <p class="white text-center p-3">Orari STP</p>
       </div>
       <div class="col">
-        <a href="#">
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-25">
+        <a href="{{ url_for('demcar') }}">
+          <img src="{{url_for('static', filename='DemCar.png')}}" class="img-fluid w-10">
         </a>
-        <p class="white text-center p-3">Orari STP</p>
+        <p class="white text-center p-3">DemCar Auto</p>
+      </div>
+      <div class="col">
+        <a href="{{ url_for('fdd') }}">
+          <img src="{{url_for('static', filename='fdd_logo.png')}}" class="img-fluid w-10">
+        </a>
+        <p class="white text-center p-3">Fondo Danilo Dolci</p>
       </div>
       <div class="col">
         <a href="#">
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-25">
+          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-10">
         </a>
         <p class="white text-center p-3">Orari STP</p>
       </div>
-      <div class="col">
-        <a href="#">
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-25">
-        </a>
-        <p class="white text-center p-3">Orari STP</p>
-      </div>
-
-
-      </a>
     </div>
   </section>
 
-  <section class="section text-center white" id="Contacts">
-    <p>Bella</p>
+  <section class="section justify-content-center align-items-center" id="Contacts">
+    <div class="container text-center">
+      <div class="col">
+        <a href="{{url_for('facebook')}}">
+          facebook
+        </a>
+      </div>
+      <div class="col">
+        <a href="{{url_for('instagram')}}">
+          instagram
+        </a>
+      </div>
+      <div class="col">
+        <a href="{{url_for('telegram')}}">
+          Telegram
+        </a>
+      </div>
+    </div>
   </section>
 
 
