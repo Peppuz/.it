@@ -6,6 +6,7 @@ app = Flask(__name__)
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
+	r = request.args.get('note, '')
 	return render_template('index.html')
 
 @app.route("/spendTheCash")
@@ -31,7 +32,7 @@ def youtube2():
 	return redirect('https://ddg.gg')
 
 
-# Fondo Danilo Dolci Generator & Uploder static pages 
+# Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd", methods=['POST', 'GET'])
 def fondoDaniloDolci():
 	"""
