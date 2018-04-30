@@ -6,7 +6,7 @@ app = Flask(__name__)
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
-	r = request.args.get('note, '')
+	# r = request.args.get('note, '')
 	return render_template('index.html')
 
 @app.route("/spendTheCash")
