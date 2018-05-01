@@ -1,0 +1,172 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+p {
+  color: #464a4e;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.white{
+  color: #fff !important;
+}
+
+/** Components:
+ *  Drawer
+ *  footer
+ *
+ */
+.drawer { height: 0 }
+.drawer a { font-size: 0 }
+.drawer .closebtn { font-size: 0 }
+.croce{
+  transform: rotate(45deg);
+  transition:0.3s;
+
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   height: 3rem;
+   width: 100%;
+   background-color: #221E20;
+   color: white;
+   text-align: center;
+   padding-top: 0.7rem;
+}
+@media screen and (max-width: 750px) {
+
+  .drawer {
+      display: 'block';
+      height: 33.3rem;
+      width: 0;
+      position: absolute;
+      z-index: 1;
+      top: 10rem;
+      left: 0;
+
+      background-color: #221E20;
+      overflow-x: hidden;
+      transition: 0.5s;
+      //padding-top: 110px;
+  }
+
+  .drawer a {
+      padding: 8px 8px 50px 32px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+  }
+
+  .drawer a:hover {
+      color: white;
+  }
+
+  .drawer .closebtn {
+      position: absolute;
+      top: 0;
+      left: -3.2rem;
+      font-size: 100px;
+      margin-left: 50px;
+      margin-bottom: 10px;
+      transform: rotate(0deg);
+      -webkit-transition-duration: 0.3s; /* Safari */
+      transition-duration: 0.3s;
+  }
+
+}
+
+.closedDD{
+  position: relative;
+  height: 0;
+  opacity: 0;
+  transition:.2s;
+  border-bottom: '1px solid white';
+
+}
+.openDD{
+  position: relative;
+  height: '100%';
+  transition:.5s;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+/** Bootstrap Overflows:
+ * active button in navbar
+ * non-active button in navbar
+ * padding to buttons
+ * nav toggler border none
+ */
+.navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link{
+  color: rgba(50, 148, 250, 1); !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+  padding-right: 2.5rem !important;
+  padding-left: 2.5rem !important;
+  font-size: 140% !important;
+}
+.navbar-toggler{
+  border: none;
+}
+
+
+/** Contatti page */
+.immagine {
+    text-align: right;
+    position: relative;
+    width: 10%;
+    left: 0;
+}
+.provone {
+  padding-top: 25px;
+  padding-bottom: 64px;
+  margin: 0 auto;
+  max-width: 800px;
+
+}
+.provone > * {
+  float: left;
+}
+.provone > img {
+  width: 10%;
+}
+.provone > p {
+  width: 90%;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.list-group-item:last-child{
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+}
+.activ{
+  color: blue !important;
+  /* #62abf9 !important; */
+}
+
+/*social buttons*/
