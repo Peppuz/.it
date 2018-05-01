@@ -2,8 +2,8 @@ import json
 from flask import Flask, abort, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
-config = json.loads(open('config.json').read())
-print config
+config = json.load(open('config.json'))
+print(config)
 app = Flask(__name__)
 
 # ROUTES
@@ -61,8 +61,7 @@ def fdd_login():
 		* Checks if posted data is correct
 	"""
 	if request.method == 'POST':
-		if request.form['usr'] == config['fdd']['username'] and
-		   request.form['pwd'] == config['fdd']['password']:
+		if request.form['usr'] == config['fdd']['username'] and request.form['pwd'] == config['fdd']['password']:
 			session['username'] = request.form['username']
 			return render_template('fdd_admin.html')
 		else:
