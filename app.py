@@ -2,7 +2,7 @@ import json
 from flask import Flask, abort, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
-config = json.load(open('config.json').read())
+config = json.loads(open('config.json').read())
 print config
 app = Flask(__name__)
 
@@ -54,20 +54,21 @@ def demcar():
 def fdd():
 	return redirect("http://fondodanilodolci.it")
 
+# Fondo Danilo Dolci login
 @app.route("/fdd/login", methods=['GET', 'POST'])
 def fdd_login():
 	"""
 		* Checks if posted data is correct
 	"""
 	if request.method == 'POST':
-		if request.form['usr'] == 'gigi' and request.form['pwd'] == '12345':
+		if request.form['usr'] == config['fdd']['username'] and
+		   request.form['pwd'] == config['fdd']['password']:
 			session['username'] = request.form['username']
 			return render_template('fdd_admin.html')
 		else:
 			redirect(url_for('fdd'))
 	else:
 		render_template('fdd_login.html')
-
 
 # Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd/upload", methods=['POST', 'GET'])
