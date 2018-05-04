@@ -15,103 +15,27 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='demo.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='component.css') }}" />
   <script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
-  <style media="screen">
-    a {
-      margin: 0 10px 0 10px;
-      text-decoration: none !important;
-      color: white;
-    }
-
-    html {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    .w-10{ width: 15%; }
-    .bg {
-      background-image: url('static/bg.jpeg');
-      background-repeat: repeat;
-    }
-
-    .section {
-      height: 100%;
-      padding-top: 20px;
-    }
-
-    .searchbar {
-      border: solid 1px transparent;
-      border-top: none;
-      border-radius: 10px;
-      border-bottom: none;
-    }
-
-    .searchbar-input {
-      border-radius: 13px;
-      border: transparent solid 1px;
-      margin: 0;
-
-    }
-
-    .form-group{
-      margin-bottom: -8rem;
-    }
-
-    /* Spinning Gear */
-
-    .image {
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 5s linear infinite;
-      -moz-animation: spin 5s linear infinite;
-      animation: spin 5s linear infinite;
-    }
-
-    @-moz-keyframes spin {
-      100% {
-        -moz-transform: rotate(360deg);
-      }
-    }
-
-    @-webkit-keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-      }
-    }
-
-
-    /* Peppuz Font */
+  <style>
     @font-face {
         font-family: "Soria";
-        src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
+        src: url({{url_for('static', filename='soria-font.ttf')}});
+
     }
     .customfont {
         font-family: "Soria", Verdana, Tahoma;
-        font-size: 500%;
+        font-size: 300%;
     }
   </style>
 </head>
 
 <body class="bg">
 
-  <main class="section justify-content-center align-items-center">
-
+  <section class="section justify-content-center align-items-center" id="Home">
     <!-- PEPPUZ -->
     <div class="container d-flex justify-content-center">
       <a class="row" href="{{url_for('index')}}">
-        <img src="{{url_for('static', filename='gear_white.png')}}" class="img-fluid image p-3 m-0" style="width:100px; height:100px">
-        <h1 class="white m-0 customfont">Peppuz</h1>
+        <img src="{{url_for('static', filename='gear_white.png')}}" class="img-fluid image p-4 mx-0" style="width:100px; height:100px">
+        <h1 class="white my-4 customfont">Peppuz</h1>
       </a>
     </div>
 
@@ -132,7 +56,7 @@
     <!-- Buttons -->
     <nav class="container text-center cl-effect-9">
       <div class="col p-2">
-        <a class="linch text-center" id="Dev" href="#">Projects</a>
+        <a class="linch text-center" id="Proj" href="#">Projects</a>
       </div>
       <div class="col p-2">
         <a class=" linch text-center" href="{{url_for('soundcloud')}}">Sounds</a>
@@ -141,59 +65,114 @@
         <a class="linch text-center" id="Contacts" href="#">Contacts</a>
       </div>
     </nav>
-  </main>
+  </section>
 
-  <section class="section" id="Dev">
-    <div class="container text-center">
-      <div class="col">
+  <section class="section justify-content-center align-items-center" id="Proj">
+    <div class="text-center row p-3">
+      <div class="col col-lg-4 offset-lg-2">
         <a href="#"><!-- TODO: if adroid link to Google Play -->
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-10">
+          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-3">Orari STP</p>
+        <p class="white text-center p-2">
+          <i class="fa fa-lock"></i>
+          <i class="fab white fa-app-store "></i>
+          <i class="fab white fa-google-play "></i>
+          <br> Orari STP 3 <br>
+
+        </p>
       </div>
-      <div class="col">
+
+      <div class="col col-lg-4">
         <a href="{{ url_for('demcar') }}">
-          <img src="{{url_for('static', filename='DemCar.png')}}" class="img-fluid w-10">
+          <img src="{{url_for('static', filename='DemCar.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-3">DemCar Auto</p>
+        <p class="white text-center p-2">
+          <i class="fa fa-lock"></i>
+          <i class="fas fa-globe "></i>
+          <br>  DemCar Auto
+        </p>
       </div>
-      <div class="col">
+    </div>
+
+    <div class="text-center row p-3">
+      <div class="col col-lg-4 offset-lg-2">
         <a href="{{ url_for('fdd') }}">
-          <img src="{{url_for('static', filename='fdd_logo.png')}}" class="img-fluid w-10">
+          <img src="{{url_for('static', filename='fdd_logo.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-3">Fondo Danilo Dolci</p>
+        <p class="white text-center p-2">
+          <i class="fa fa-lock"></i>
+          <i class="fas fa-globe "></i>
+          <br> Fondo Danilo Dolci <br>
+        </p>
       </div>
-      <div class="col">
+
+      <div class="col col-lg-4">
         <a href="#">
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-10">
+          <img src="{{url_for('static', filename='ytdl.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-3">Orari STP</p>
+        <p class="white text-center p-2">
+          <i class="fa fa-github fa-2x"></i>
+          <br> YT Downloader Bot
+        </p>
       </div>
     </div>
   </section>
 
   <section class="section justify-content-center align-items-center" id="Contacts">
-    <div class="container text-center">
-      <div class="col">
-        <a href="{{url_for('facebook')}}">
-          facebook
-        </a>
-      </div>
-      <div class="col">
-        <a href="{{url_for('instagram')}}">
-          instagram
-        </a>
-      </div>
-      <div class="col">
-        <a href="{{url_for('telegram')}}">
-          Telegram
-        </a>
-      </div>
+    <div class="container text-center wrapper">
+        <ul class="social-icons icon-circle list-unstyled list-inline">
+  	      <li><a href="#"><i class="fa fa-adn"></i></a> </li>
+  	      <li><a href="#"><i class="fa fa-android"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-apple"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-bitbucket"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-bitbucket-square"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-bitcoin"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-css3"></i></a> </li>
+  	      <li> <a href="#"><i class="fa fa-dribbble"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-dropbox"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-facebook"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-facebook-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-flickr"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-foursquare"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-github"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-github-alt"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-github-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-google-plus"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-google-plus-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-html5"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-linux"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-maxcdn"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-pagelines"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-pinterest"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-pinterest-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-renren"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-skype"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-stack-exchange"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-stack-overflow"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-trello"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-tumblr"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-tumblr-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-twitter-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-vk"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-weibo"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-windows"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-xing"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-xing-square"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-youtube"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-youtube-play"></i></a></li>
+  	      <li> <a href="#"><i class="fa fa-youtube-square"></i></a></li>
+  	  	</ul>
     </div>
   </section>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
   <script type="text/javascript">
     $('.linch').click(function() {
       var id = $(this).attr('id');
