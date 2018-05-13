@@ -1,96 +1,116 @@
-<div id="Drawer" class="drawer noselect">
-  <a id="drawer_home" href="../index.html">Home</a>
-  <a id="drawer_presentazione" href="../presentazione.html" style="">Presentazione</a>
-  <a id="drawer_dd" href="/Danilo-Dolci.html" style="">Danilo Dolci</a>
-  <a id="drawer_attivita" href="../attivita.html" style="">Attività</a>
-  <a id="drawer_citazioni" href="citazioni.html" style="">Citazioni</a>
-  <a id="drawer_contatti" href="../contatti.html" style="">Contatti</a>
-</div>
-
-<!-- Global NavBar -->
-<div id="Nav" class="container-fluid" style="background-color:#221E20">
-  <nav class="navbar navbar-expand-md navbar-light ">
-    <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
-      <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
-    </a>
-    <a href="../index.html" class="mx-auto">
-      <img class="" onclick="" style="" src="../assets/pics/sys/logo.jpg">
-    </a>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ml-auto">
-        <li>
-          <a id="nav_home" class="nav-link" href="../index.html" style="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav_presentazione" class="nav-link" href="../presentazione.html" style="">Presentazione</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav_dd" class="nav-link " href="../Danilo-Dolci.html" style="">Danilo Dolci</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a id="nav_attivita" class="nav-link " href="../attivita.html" style="">Attività</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a id="nav_citazioni" class="nav-link " href="../citazioni.html" style="">Citazioni</a>
-        </li>
-        <li class="nav-item">
-          <a id="nav_contatti" class="nav-link " href="../contatti.html" style="">Contatti</a>
-        </li>
-      </ul>
+<html>
+  <head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <title id="head_title"></title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../assets/css/vivify.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/master.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/master.css">
+  </head>
+  <body>
+    <!-- Global Drawer -->
+    <div id="Drawer" class="drawer noselect">
+      <a id="drawer_home" href="../index.html">Home</a>
+      <a id="drawer_presentazione" href="../presentazione.html" style="">Presentazione</a>
+      <a id="drawer_dd" href="/Danilo-Dolci.html" style="">Danilo Dolci</a>
+      <a id="drawer_attivita" href="../attivita.html" style="">Attività</a>
+      <a id="drawer_citazioni" href="citazioni.html" style="">Citazioni</a>
+      <a id="drawer_contatti" href="../contatti.html" style="">Contatti</a>
     </div>
-  </nav>
-  <script>
-    function openNav() {
-      var croce = document.getElementById("croce");
-      var drawer = document.getElementById("Drawer");
-      if (drawer.style.width == "50%"){
-        // closing
-        for (var i = 0; i < drawer.children.length; i++)
-          hideChild(drawer.children[i])
-        setTimeout(function () {
-          drawer.style.width = "0";
-          croce.classList = 'navbar-toggler closebtn';
-        }, 100);
-      }
-      else {
-        // opening
-        for (var i = 0; i < drawer.children.length; i++)
-          showChild(drawer.children[i])
-        setTimeout(function () {
-          croce.classList = 'navbar-toggler croce';
-          croce.style.WebkitTransitionDuration = '.3s'
-          croce.style.transitionDuration = '.3s'
-          drawer.style.width = "50%";
-        }, 400);
-      }
-    }
-    function showChild(child){
-        child.classList = 'vivify fadeInLeft'
-    }
-    function hideChild(child){
-        child.classList = 'vivify fadeOutLeft'
-    }
-    function presentazione(){
-      var k = document.getElementById('presentazione');
-      (k.classList == "openDD") ? k.classList = 'closedDD' : k.classList = 'openDD'
-    }
 
-  </script>
-</div>
+    <!-- Global NavBar -->
+    <div id="Nav" class="container-fluid" style="background-color:#221E20">
+      <nav class="navbar navbar-expand-md navbar-light ">
+        <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
+          <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
+        </a>
+        <a href="../index.html" class="mx-auto">
+          <img class="" onclick="" style="" src="../assets/pics/sys/logo.jpg">
+        </a>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ml-auto">
+            <li>
+              <a id="nav_home" class="nav-link" href="../index.html" style="">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="nav_presentazione" class="nav-link" href="../presentazione.html" style="">Presentazione</a>
+            </li>
+            <li class="nav-item">
+              <a id="nav_dd" class="nav-link " href="../Danilo-Dolci.html" style="">Danilo Dolci</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a id="nav_attivita" class="nav-link " href="../attivita.html" style="">Attività</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a id="nav_citazioni" class="nav-link " href="../citazioni.html" style="">Citazioni</a>
+            </li>
+            <li class="nav-item">
+              <a id="nav_contatti" class="nav-link " href="../contatti.html" style="">Contatti</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <script>
+        function openNav() {
+          var croce = document.getElementById("croce");
+          var drawer = document.getElementById("Drawer");
+          if (drawer.style.width == "50%"){
+            // closing
+            for (var i = 0; i < drawer.children.length; i++)
+              hideChild(drawer.children[i])
+            setTimeout(function () {
+              drawer.style.width = "0";
+              croce.classList = 'navbar-toggler closebtn';
+            }, 100);
+          }
+          else {
+            // opening
+            for (var i = 0; i < drawer.children.length; i++)
+              showChild(drawer.children[i])
+            setTimeout(function () {
+              croce.classList = 'navbar-toggler croce';
+              croce.style.WebkitTransitionDuration = '.3s'
+              croce.style.transitionDuration = '.3s'
+              drawer.style.width = "50%";
+            }, 400);
+          }
+        }
+        function showChild(child){
+            child.classList = 'vivify fadeInLeft'
+        }
+        function hideChild(child){
+            child.classList = 'vivify fadeOutLeft'
+        }
+        function presentazione(){
+          var k = document.getElementById('presentazione');
+          (k.classList == "openDD") ? k.classList = 'closedDD' : k.classList = 'openDD'
+        }
 
-<!-- Global Jumbotron -->
-<main class="" style="">
-  <div class="jumbotron">
-    <h1 id="jumbotron" class="text-center"/>
-  </div>
-</main>
+      </script>
+    </div>
 
-<div id='container' class="justify-content-center container mt-5 mb-5"/>
+    <!-- Global Jumbotron -->
+    <main class="" style="">
+      <div class="jumbotron">
+        <h2 id="jumbotron" class="text-center"/>
+        <h3 id="anno" class="text-center"/>
+      </div>
+    </main>
 
-<!-- Global Footer -->
-<div style="position:fixed; height: 50px; z-index: 1" class="footer" >
-  <a href="mailto:info@danilodolci.it?Subject=Info" style="text-decoration: none; color:white; font-size: 20px;"> info@danilodolci.it </a>
-</div>
+    <div id='container' class="justify-content-center container mt-5 mb-5">
+    </div>
 
-<!-- Local Script -->
-<script type="text/javascript">
+     <!-- Spacer -->
+    <div class="mb-5">
+        <p style="opacity:0">!</p>
+    </div>
+    <!-- Global Footer -->
+    <div style="position:fixed; height: 50px; z-index: 1" class = "footer" >
+      <a href="mailto:info@danilodolci.it?Subject=Info" style = "text-decoration: none; color:white; font-size: 20px;"> info@danilodolci.it </a>
+    </div>
+
+    <!-- Local Script  -->
+    <script type="text/javascript">

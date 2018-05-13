@@ -1,4 +1,4 @@
-import json, os, ftplib, urllib.request
+import json, os, ftplib, requests, glob
 from flask import Flask, redirect, url_for, request, render_template, jsonify, flash
 from werkzeug.utils import secure_filename
 
@@ -85,63 +85,80 @@ def fondoDaniloDolci():
 
 
 def render_request(form, files):
-	title = form['title']
-	year = currentYear if not form['year'] else form['year']
-	buttons = []
-
-	del form['title']
-	del form['year']
-
-	count = 0
-	# Output di questo while e' il Buttons (JSON) per evento
-	while form:
-		title = form.get('buttons-%s' % count)
-		url = files.get('url-%s' % count)
-		filename = secure_filename(url.filename)
-
-		# Saving
-		url.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-		# Append JSON
-		buttons.append({"title": title, "url":'http://fondodanilodolci.it/attivita/'+filename})
-		del form['buttons-%s' % count]
-		count += 1
-
-
-	''' Questo modulo genera HTML per l'evento '''
-	# Generating Event
-	part1 = open('static/fdd/template_evento.html').read()
-	part2 = open('static/fdd/template_evento2.html').read()
-	new_data = "var currentPosition = '%s';inHTML('jumbotron', currentPosition);inHTML('head_title', currentPosition + ' | Fondo Danilo Dolci');let data = %s ;" % (title, json.dumps(buttons))
-
+	# FTP login
 	host = "localhost"
 	user = "Peppuz"
 	pwd = "C"
-
-	# FTP login
 	ftp = ftplib.FTP(host)
 	ftp.login(user, pwd)
 	ftp.cwd('/Applications/MAMP/htdocs/fdd/attivita')
 
+	# Getting and removing title and year
+	title = form['title']
+	year = currentYear if not form['year'] else form['year']
+	del form['title']
+	del form['year']
+
+	buttons = []
+	count = 0
+	# Output di questo while e' il Buttons (JSON) per evento
+	while form:
+		button_title = form.get('buttons-%s' % count)
+		url = files.get('url-%s' % count)
+		filename = secure_filename(url.filename)
+
+		# Saving
+		try:
+			url.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		except Exception as e:
+			raise e
+
+		# Append JSON
+		buttons.append({"title": button_title, "url":'http://%s/attivita/%s'%(host, filename)})
+		del form['buttons-%s' % count]
+		count += 1
+
+	# Generating Event js
+	part1 = open('static/fdd/template_evento.html').read()
+	part2 = open('static/fdd/template_evento2.html').read()
+	new_data = "var currentPosition = '%s';inHTML('jumbotron', currentPosition);inHTML('head_title', currentPosition + ' | Fondo Danilo Dolci');let data = %s ;" % (title, json.dumps(buttons))
+
 	# Attivita update
-	reach = "http://localhost/fdd/attivita.json"
-	raw_data = urllib.request.urlopen(reach).read()
-	input = json.loads(raw_data)
-	input.insert(0, new_data)
+	input = requests.get("http://localhost/fdd/attivita.json").json()
+	boole = False
+	for anno in input:
+		if anno['anno'] is year:
+			anno['content'].insert(0,{"titolo":title, "url":"attivita/%s.html" % title})
+			boole = True
+
+	if not boole:
+		input.insert(0, {"anno":year, "content":[{"titolo":title, "url":"attivita/%s.html" % title }]})
+
+	input = json.dumps(input)
 
 	# Creating Files to Upload
 	with open('uploads/attivita.json', 'w') as target:
-		target.write(output)
+		target.write(input)
 
 	with open('uploads/%s.html' % title, 'w') as target:
 		target.write(part1+new_data+part2)
 
+	# Upload Attivita
 	ftp.cwd('/Applications/MAMP/htdocs/fdd')
-	ftp.storlines("STOR attivita.json" , open('uploads/attivita.json'))
-	ftp.cwd('/Applications/MAMP/htdocs/fdd/attivita')
-	ftp.storlines("STOR attivita.json" , open('uploads/%s.html' % title))
+	ftp.storlines("STOR attivita.json" , open('uploads/attivita.json', 'rb'))
+	os.remove(app.config['UPLOAD_FOLDER']+'attivita.json')
 
-	return jsonify(buttons)
+	# Upload evento html
+	ftp.cwd('/Applications/MAMP/htdocs/fdd/attivita')
+	ftp.storlines("STOR %s.html" % title , open('uploads/%s.html' % title, 'rb'))
+	os.remove('%s%s.html'% (app.config['UPLOAD_FOLDER'], title))
+
+	# Upload files
+	os.chdir(app.config['UPLOAD_FOLDER'])
+	for file in glob.glob("*.*"):
+		ftp.storlines("STOR %s" % file , open('uploads/%s' % file, 'rb'))
+
+	return redirect('http://localhost/fdd/attivita.html')
 
 #  Attivita Year
 # 	{
