@@ -1,10 +1,11 @@
-import json
-from flask import Flask, abort, redirect, url_for, request, render_template, jsonify
+import json, os, ftplib, urllib.request
+from flask import Flask, redirect, url_for, request, render_template, jsonify, flash
 from werkzeug.utils import secure_filename
 
 config = json.load(open('config.json'))
 print(config)
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 # ROUTES
 @app.route("/", methods=['GET'])
@@ -67,7 +68,7 @@ def fdd_login():
 		else:
 			redirect(url_for('fdd'))
 	else:
-		render_template('fdd_login.html')
+		return render_template('fdd_login.html')
 
 # Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd/upload", methods=['POST', 'GET'])
@@ -76,24 +77,88 @@ def fondoDaniloDolci():
 		* takes the POST data
 		* adds new buttons to attivita
 		* generates new Files to upload with fdd_upload(page)
-
 	"""
+	if not request.form and request.method is not 'POST':
+		return render_template('admin.html')
+	else:
+		return render_request(request.form.copy(), request.files)
+
+
+def render_request(form, files):
+	title = form['title']
+	year = currentYear if not form['year'] else form['year']
 	buttons = []
-	title = ''
-	year  = ''
-	# TODO: add auto set Year from currentDate
-	return  jsonify(request.form)
-	if request.method == 'POST':
-		for key, val in request.form:
-			if key == 'title' and not val:
-				return "Errore: non e' stato inserito alcun Titolo! <br> Torna indietro e ricompila il modulo correttamente."
-			else:
-				title = val
-			if key == 'year' and not val:
-				year = val
-			# TODO: ADD button to array as Dictionary with title,url
-			if key[0:7] == 'buttons-':
-				# buttons.append(val)
-				print("yes it works Now append something ")
-	# r = request.args.get('note, '')
- 	# return render_template('index.html')
+
+	del form['title']
+	del form['year']
+
+	count = 0
+	# Output di questo while e' il Buttons (JSON) per evento
+	while form:
+		title = form.get('buttons-%s' % count)
+		url = files.get('url-%s' % count)
+		filename = secure_filename(url.filename)
+
+		# Saving
+		url.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+		# Append JSON
+		buttons.append({"title": title, "url":'http://fondodanilodolci.it/attivita/'+filename})
+		del form['buttons-%s' % count]
+		count += 1
+
+
+	''' Questo modulo genera HTML per l'evento '''
+	# Generating Event
+	part1 = open('static/fdd/template_evento.html').read()
+	part2 = open('static/fdd/template_evento2.html').read()
+	new_data = "var currentPosition = '%s';inHTML('jumbotron', currentPosition);inHTML('head_title', currentPosition + ' | Fondo Danilo Dolci');let data = %s ;" % (title, json.dumps(buttons))
+
+	host = "localhost"
+	user = "Peppuz"
+	pwd = "C"
+
+	# FTP login
+	ftp = ftplib.FTP(host)
+	ftp.login(user, pwd)
+	ftp.cwd('/Applications/MAMP/htdocs/fdd/attivita')
+
+	# Attivita update
+	reach = "http://localhost/fdd/attivita.json"
+	raw_data = urllib.request.urlopen(reach).read()
+	input = json.loads(raw_data)
+	input.insert(0, new_data)
+
+	# Creating Files to Upload
+	with open('uploads/attivita.json', 'w') as target:
+		target.write(output)
+
+	with open('uploads/%s.html' % title, 'w') as target:
+		target.write(part1+new_data+part2)
+
+	ftp.cwd('/Applications/MAMP/htdocs/fdd')
+	ftp.storlines("STOR attivita.json" , open('uploads/attivita.json'))
+	ftp.cwd('/Applications/MAMP/htdocs/fdd/attivita')
+	ftp.storlines("STOR attivita.json" , open('uploads/%s.html' % title))
+
+	return jsonify(buttons)
+
+#  Attivita Year
+# 	{
+#     "anno":2014,
+#     "content":[
+#       {
+#         "titolo":"III° PREMIO BIENNALE 2014 FONDO DANILO DOLCI PER LA LEGALITA’ E LA NONVIOLENZA IN MEMORIA DI PIERO BARIATI",
+#         "url":"attivita/BandoBiennale2014.html"
+#       },
+#       { "titolo":"NUOVO BANDO FONDO DANILO DOLCI 2014", "url":"attivita/Bando2014.html"}
+#
+#     ]
+#   },
+
+# Evento
+#   [
+#     {title: 'Bando', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD.pdf'},
+#     {title: 'Verbale', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD_verbale.pdf'},
+#     {title: 'Premiazione', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD_assegnazione.pdf'},
+#   ]

@@ -1,0 +1,54 @@
+let counter = 0;
+let row = null;
+let container = document.getElementById('container')
+for (button of data) {
+  if(counter % 3 == 0){
+    // Change focus to new row
+    row = document.createElement('div')
+    row.classList = 'row'
+    container.appendChild(row);
+  }
+  newButton(row, button.title, button.url);
+  counter += 1;
+}
+
+// peppuz.tools
+function inHTML(a,b){document.getElementById(a).innerHTML = b;}
+function newButton(row, title, url){
+  // Construct Button
+  let main = document.createElement('a');
+  let group = document.createElement('div');
+  let panel = document.createElement('div');
+  let heading = document.createElement('div');
+  let h4 = document.createElement('h2');
+  let link = document.createElement('a');
+
+  // Appending concatenation
+  row.appendChild(main);
+  main.appendChild(group);
+  group.appendChild(panel);
+  panel.appendChild(heading);
+  heading.appendChild(h4);
+  h4.appendChild(link);
+
+  // Class Add
+  main.classList = 'container-fluid mt-5 col-xs-8 col-md-4'
+  main.href = url
+  main.style.textDecoration = 'none';
+  group.classList = 'd-flex justify-content-center panel-group w-100';
+  panel.classList = 'panel panel-default w-75'
+  panel.style.borderRadius = '10px'
+  heading.classList = 'panel-heading'
+  h4.classList = 'panel-title p-5 text-center'
+  h4.style.color = 'blue'
+
+  // Set Button
+  h4.innerHTML = '<strong>'+ title +'</strong>'
+}
+</script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
