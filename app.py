@@ -1,5 +1,5 @@
 import json, os, ftplib, requests, glob
-from flask import Flask, redirect, url_for, request, render_template, jsonify, flash
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
 config = json.load(open('config.json'))
@@ -61,28 +61,30 @@ def fdd_login():
 	"""
 		* Checks if posted data is correct
 	"""
-	if request.method == 'POST':
-		if request.form['usr'] == config['fdd']['username'] and request.form['pwd'] == config['fdd']['password']:
-			session['username'] = request.form['username']
-			return render_template('fdd_admin.html')
-		else:
-			redirect(url_for('fdd'))
+	if request.method == 'POST' and request.form['pwd'] == 'password':
+		return render_template('admin.html')
 	else:
 		return render_template('fdd_login.html')
 
 # Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd/upload", methods=['POST', 'GET'])
-def fondoDaniloDolci():
+def fdd_attivita():
 	"""
 		* takes the POST data
 		* adds new buttons to attivita
 		* generates new Files to upload with fdd_upload(page)
 	"""
 	if not request.form and request.method is not 'POST':
-		return render_template('admin.html')
+		return render_template('fdd_admin.html')
 	else:
 		return render_request(request.form.copy(), request.files)
 
+@app.route("/fdd/citazioni", methods=['POST', 'GET'])
+def fdd_citazioni():
+	if not request.form and request.method is not 'POST':
+		return render_template('citazioni.html')
+	else:
+		return render_citazioni(request.form.copy(), request.files)
 
 def render_request(form, files):
 	# FTP login
@@ -153,29 +155,13 @@ def render_request(form, files):
 	ftp.storlines("STOR %s.html" % title , open('uploads/%s.html' % title, 'rb'))
 	os.remove('%s%s.html'% (app.config['UPLOAD_FOLDER'], title))
 
-	# Upload files
+	# Upload files in attivita
 	os.chdir(app.config['UPLOAD_FOLDER'])
 	for file in glob.glob("*.*"):
 		ftp.storlines("STOR %s" % file , open('uploads/%s' % file, 'rb'))
 
 	return redirect('http://localhost/fdd/attivita.html')
 
-#  Attivita Year
-# 	{
-#     "anno":2014,
-#     "content":[
-#       {
-#         "titolo":"III° PREMIO BIENNALE 2014 FONDO DANILO DOLCI PER LA LEGALITA’ E LA NONVIOLENZA IN MEMORIA DI PIERO BARIATI",
-#         "url":"attivita/BandoBiennale2014.html"
-#       },
-#       { "titolo":"NUOVO BANDO FONDO DANILO DOLCI 2014", "url":"attivita/Bando2014.html"}
-#
-#     ]
-#   },
 
-# Evento
-#   [
-#     {title: 'Bando', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD.pdf'},
-#     {title: 'Verbale', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD_verbale.pdf'},
-#     {title: 'Premiazione', url: 'http://fondodanilodolci.it/risorse/archivio/2007_BandoFDD_assegnazione.pdf'},
-#   ]
+def render_citazioni(form):
+	return 
