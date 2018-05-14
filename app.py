@@ -62,9 +62,13 @@ def fdd_login():
 		* Checks if posted data is correct
 	"""
 	if request.method == 'POST' and request.form['pwd'] == 'password':
-		return render_template('admin.html')
+		return redirect(url_for('fdd_select'))
 	else:
 		return render_template('fdd_login.html')
+
+@app.route('/fdd/select')
+def fdd_select():
+	return render_template('fdd_select.html')
 
 # Fondo Danilo Dolci Generator & Uploder static pages
 @app.route("/fdd/upload", methods=['POST', 'GET'])
@@ -75,16 +79,21 @@ def fdd_attivita():
 		* generates new Files to upload with fdd_upload(page)
 	"""
 	if not request.form and request.method is not 'POST':
-		return render_template('fdd_admin.html')
+		return render_template('admin.html')
 	else:
 		return render_request(request.form.copy(), request.files)
 
-@app.route("/fdd/citazioni", methods=['POST', 'GET'])
-def fdd_citazioni():
+@app.route("/fdd/editoriale", methods=['POST', 'GET'])
+def fdd_editoriale():
 	if not request.form and request.method is not 'POST':
-		return render_template('citazioni.html')
+		return render_template('fdd_editoriale.html')
 	else:
-		return render_citazioni(request.form.copy(), request.files)
+		return render_editoriale(request.form.copy(), request.files)
+
+@app.route("/fdd/danilodolci", methods=['POST', 'GET'])
+def fdd_dd():
+	return jsonify(request.form)
+
 
 def render_request(form, files):
 	# FTP login
@@ -97,7 +106,7 @@ def render_request(form, files):
 
 	# Getting and removing title and year
 	title = form['title']
-	year = currentYear if not form['year'] else form['year']
+	year = form['year']
 	del form['title']
 	del form['year']
 
@@ -109,11 +118,8 @@ def render_request(form, files):
 		url = files.get('url-%s' % count)
 		filename = secure_filename(url.filename)
 
-		# Saving
-		try:
-			url.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		except Exception as e:
-			raise e
+		# Saving local
+		url.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
 		# Append JSON
 		buttons.append({"title": button_title, "url":'http://%s/attivita/%s'%(host, filename)})
@@ -123,7 +129,9 @@ def render_request(form, files):
 	# Generating Event js
 	part1 = open('static/fdd/template_evento.html').read()
 	part2 = open('static/fdd/template_evento2.html').read()
-	new_data = "var currentPosition = '%s';inHTML('jumbotron', currentPosition);inHTML('head_title', currentPosition + ' | Fondo Danilo Dolci');let data = %s ;" % (title, json.dumps(buttons))
+	new_data = "var currentPosition = '%s';\
+	inHTML('jumbotron', currentPosition);inHTML('head_title', currentPosition + ' | Fondo Danilo Dolci');\
+	let data = %s ;" % (title, json.dumps(buttons))
 
 	# Attivita update
 	input = requests.get("http://localhost/fdd/attivita.json").json()
@@ -158,10 +166,10 @@ def render_request(form, files):
 	# Upload files in attivita
 	os.chdir(app.config['UPLOAD_FOLDER'])
 	for file in glob.glob("*.*"):
-		ftp.storlines("STOR %s" % file , open('uploads/%s' % file, 'rb'))
+		ftp.storlines("STOR %s" % file , open('%s' % file, 'rb'))
 
 	return redirect('http://localhost/fdd/attivita.html')
 
 
-def render_citazioni(form):
-	return 
+def render_editoriale(form):
+	return

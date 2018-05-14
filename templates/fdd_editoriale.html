@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/master.css')}}">
-    <style media="screen">
+  <style media="screen">
     a {
       margin: 0 10px 0 10px;
       text-decoration: none !important;
@@ -191,17 +191,37 @@
 
   <!-- Upload Inputs -->
   <section class="m-5 py-2" style="border: 1px solid white; border-radius:10px; background-color:rgba(0,0,0,.1)">
-    <form class="" action="#" method="post">
+    <form class="" action="#" method="post" enctype=multipart/form-data>
+      <h3 class="text-center py-2">Informazioni Generali</h3>
+
       <div class="container form">
-        <div class="">
-          <div class=" row ">
-            <input class="col form-control" type="password" name="pwd" placeholder="> Inserisci qui la password">
-            <input class="col-3 btn btn-info form-control float-right" type="submit" name="" value="Invia">
+        <div class="mb-3">
+          <div class="p-1">
+            <input class="form-control" type="text" name="title" placeholder="Titolo Articolo">
+          </div>
+          <div class="p-1">
+            <input class="form-control" type="text" name="year" placeholder="Anno">
           </div>
         </div>
+
+        <h3 class="text-center">Bottoni</h3>
+        <div id="buttons">
+
+          <div class="p-1">
+            <input class="form-control" type="text" name="buttons-0" placeholder="Titolo Bottone">
+          </div>
+          <div class="p-1">
+            <input class="" type=file name="url-0">
+          </div>
+
+        </div>
+        <div class="mt-5 container d-flex justify-content-center">
+          <label class="btn btn-success text-center d-flex textjustify-content-center " onclick="addButton()" name="button">Aggiungi Bottone<label>
+        </div>
+
       </div>
       <div class="container-fluid d-flex justify-content-center">
-
+        <input class="btn btn-info" type="submit" name="" value="Invia">
       </div>
     </form>
   </section>
@@ -213,7 +233,7 @@
 
   <!-- Local Script  -->
   <script type="text/javascript">
-    var currentPosition = 'Area Riservata';
+    var currentPosition = 'Carica nuovo articolo';
     var buttons = 1;
     inHTML('jumbotron', currentPosition);
     document.getElementById('nav_home').classList.add('activ');

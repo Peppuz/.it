@@ -1,8 +1,6 @@
-<!DOCTYPE html>
 <html lang="it" dir="ltr">
-
 <head>
-  <title id="head_title"></title>
+    <title id="head_title"></title>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,90 +8,93 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/master.css')}}">
     <style media="screen">
-    a {
-      margin: 0 10px 0 10px;
-      text-decoration: none !important;
-      color: white;
-    }
-
-    html {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    .w-10{ width: 15%; }
-    .bg {
-      background-image: url('static/bg.jpeg');
-      background-repeat: repeat;
-    }
-
-    .section {
-      height: 100%;
-      padding-top: 20px;
-    }
-
-    .searchbar {
-      border: solid 1px transparent;
-      border-top: none;
-      border-radius: 10px;
-      border-bottom: none;
-    }
-
-    .searchbar-input {
-      border-radius: 13px;
-      border: transparent solid 1px;
-      margin: 0;
-
-    }
-
-    .form-group{
-      margin-bottom: -8rem;
-    }
-
-    /* Spinning Gear */
-
-    .image {
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 5s linear infinite;
-      -moz-animation: spin 5s linear infinite;
-      animation: spin 5s linear infinite;
-    }
-
-    @-moz-keyframes spin {
-      100% {
-        -moz-transform: rotate(360deg);
+      a {
+        margin: 0 10px 0 10px;
+        text-decoration: none !important;
+        color: white;
       }
-    }
 
-    @-webkit-keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
+      html {
+        height: 100%;
       }
-    }
 
-    @keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
       }
-    }
+
+      .w-10{ width: 15%; }
+      .bg {
+        background-image: url('static/bg.jpeg');
+        background-repeat: repeat;
+      }
+
+      .section {
+        height: 100%;
+        padding-top: 20px;
+      }
+
+      .searchbar {
+        border: solid 1px transparent;
+        border-top: none;
+        border-radius: 10px;
+        border-bottom: none;
+      }
+
+      .searchbar-input {
+        border-radius: 13px;
+        border: transparent solid 1px;
+        margin: 0;
+
+      }
+
+      .form-group{
+        margin-bottom: -8rem;
+      }
+
+      /* Spinning Gear */
+
+      .image {
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 5s linear infinite;
+        -moz-animation: spin 5s linear infinite;
+        animation: spin 5s linear infinite;
+      }
+
+      @-moz-keyframes spin {
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
 
 
-    /* Peppuz Font */
-    @font-face {
-        font-family: "Soria";
-        src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
-    }
-    .customfont {
-        font-family: "Soria", Verdana, Tahoma;
-        font-size: 500%;
-    }
+      /* Peppuz Font */
+      @font-face {
+          font-family: "Soria";
+          src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
+      }
+      .customfont {
+          font-family: "Soria", Verdana, Tahoma;
+          font-size: 500%;
+      }
+      .activ{
+        color: #007bff !important;
+      }
   </style>
 </head>
 
@@ -191,19 +192,19 @@
 
   <!-- Upload Inputs -->
   <section class="m-5 py-2" style="border: 1px solid white; border-radius:10px; background-color:rgba(0,0,0,.1)">
-    <form class="" action="#" method="post">
-      <div class="container form">
-        <div class="">
-          <div class=" row ">
-            <input class="col form-control" type="password" name="pwd" placeholder="> Inserisci qui la password">
-            <input class="col-3 btn btn-info form-control float-right" type="submit" name="" value="Invia">
-          </div>
+    <div class="container text-center activ">
+      <div class="col">
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_attivita')}}">Carica su Attivita</a>
+        </div>
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_editoriale')}}">Carica su Editoriale</a>
+        </div>
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_dd')}}">Carica su Danilo Dolci</a>
         </div>
       </div>
-      <div class="container-fluid d-flex justify-content-center">
-
-      </div>
-    </form>
+    </div>
   </section>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -248,5 +249,4 @@
   </script>
 
 </body>
-
 </html>
