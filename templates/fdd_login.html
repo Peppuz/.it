@@ -3,6 +3,7 @@
 
 <head>
   <title id="head_title"></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,95 +11,94 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/master.css')}}">
     <style media="screen">
-    a {
-      margin: 0 10px 0 10px;
-      text-decoration: none !important;
-      color: white;
-    }
-
-    html {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    .w-10{ width: 15%; }
-    .bg {
-      background-image: url('static/bg.jpeg');
-      background-repeat: repeat;
-    }
-
-    .section {
-      height: 100%;
-      padding-top: 20px;
-    }
-
-    .searchbar {
-      border: solid 1px transparent;
-      border-top: none;
-      border-radius: 10px;
-      border-bottom: none;
-    }
-
-    .searchbar-input {
-      border-radius: 13px;
-      border: transparent solid 1px;
-      margin: 0;
-
-    }
-
-    .form-group{
-      margin-bottom: -8rem;
-    }
-
-    /* Spinning Gear */
-
-    .image {
-      width: 120px;
-      height: 120px;
-      -webkit-animation: spin 5s linear infinite;
-      -moz-animation: spin 5s linear infinite;
-      animation: spin 5s linear infinite;
-    }
-
-    @-moz-keyframes spin {
-      100% {
-        -moz-transform: rotate(360deg);
+      a {
+        margin: 0 10px 0 10px;
+        text-decoration: none !important;
+        color: white;
       }
-    }
 
-    @-webkit-keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
+      html {
+        height: 100%;
       }
-    }
 
-    @keyframes spin {
-      100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
       }
-    }
+
+      .w-10{ width: 15%; }
+      .bg {
+        background-image: url('static/bg.jpeg');
+        background-repeat: repeat;
+      }
+
+      .section {
+        height: 100%;
+        padding-top: 20px;
+      }
+
+      .searchbar {
+        border: solid 1px transparent;
+        border-top: none;
+        border-radius: 10px;
+        border-bottom: none;
+      }
+
+      .searchbar-input {
+        border-radius: 13px;
+        border: transparent solid 1px;
+        margin: 0;
+
+      }
+
+      .form-group{
+        margin-bottom: -8rem;
+      }
+
+      /* Spinning Gear */
+
+      .image {
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 5s linear infinite;
+        -moz-animation: spin 5s linear infinite;
+        animation: spin 5s linear infinite;
+      }
+
+      @-moz-keyframes spin {
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
 
 
-    /* Peppuz Font */
-    @font-face {
-        font-family: "Soria";
-        src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
-    }
-    .customfont {
-        font-family: "Soria", Verdana, Tahoma;
-        font-size: 500%;
-    }
-  </style>
+      /* Peppuz Font */
+      @font-face {
+          font-family: "Soria";
+          src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
+      }
+      .customfont {
+          font-family: "Soria", Verdana, Tahoma;
+          font-size: 500%;
+      }
+    </style>
 </head>
 
 <body>
-
   <!-- Global Drawer -->
   <div id="Drawer" class="drawer noselect">
     <a id="drawer_home" href="index.html" style = "">Home</a>
@@ -110,39 +110,42 @@
   </div>
 
   <!-- Global NavBar -->
-  <div id="Nav" class="container-fluid" style="background-color:#221E20">
-    <nav class="navbar navbar-expand-md navbar-light ">
-      <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
-        <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
-      </a>
+<div id="Nav" class="container-fluid" style="background-color:#221E20">
+  <nav class="navbar navbar-expand-md navbar-light ">
+    <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
+      <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
+    </a>
 
-      <a href="index.html" class="mx-auto">
-        <img src="{{url_for('static', filename='fdd/logo.jpg')}}">
-      </a>
+    <a href="index.html" class="mx-auto">
+      <img src="{{url_for('static', filename='fdd/logo.jpg')}}">
+    </a>
 
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <a id="nav_home" class="nav-link" href="index.html" style="">Home</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_presentazione" class="nav-link" href="presentazione.html" style="">Presentazione</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_dd" class="nav-link " href="Danilo-Dolci.html" style="">Danilo Dolci</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="nav_attivita" class="nav-link " href="attivita.html" style="">Attività</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="nav_citazioni" class="nav-link " href="citazioni.html" style="">Citazioni</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ml-auto">
+        <li>
+          <a id="nav_home" class="nav-link" href="index.html" style="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_presentazione" class="nav-link" href="presentazione.html" style="">Presentazione</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_dd" class="nav-link " href="Danilo-Dolci.html" style="">Danilo Dolci</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a id="nav_attivita" class="nav-link " href="attivita.html" style="">Attività</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a id="nav_editoriale" class="nav-link " href="editoriale.html" style="">Editoriale</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_lock" class="nav-link " href="http://localhost:81/fdd/login" style=""><i class="fas fa-lock white" style="padding-top: 5px;;color: #007bff"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
     <script>
       function openNav() {
         var croce = document.getElementById("croce");
@@ -216,8 +219,6 @@
     var currentPosition = 'Area Riservata';
     var buttons = 1;
     inHTML('jumbotron', currentPosition);
-    document.getElementById('nav_home').classList.add('activ');
-    document.getElementById('drawer_home').classList.add('activ');
     // peppuz.tools
     function inHTML(a,b){document.getElementById(a).innerHTML = b;}
     function addButton(){

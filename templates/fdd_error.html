@@ -187,7 +187,7 @@
   <!-- Global Jumbotron -->
   <main class="" style="">
     <div class="jumbotron">
-      <h1 id="jumbotron" class="text-center"/>
+      <h1 id="jumbotron" class="text-center" style="color:red"/>
     </div>
   </main>
 
@@ -215,36 +215,11 @@
 
   <!-- Local Script  -->
   <script type="text/javascript">
-    var currentPosition = 'Area Riservata';
+    var currentPosition = 'Errore Caricamento';
     var buttons = 1;
     inHTML('jumbotron', currentPosition);
     // peppuz.tools
     function inHTML(a,b){document.getElementById(a).innerHTML = b;}
-    function addButton(){
-      let container = document.getElementById('buttons')
-        let div = document.createElement('div')
-        let input=document.createElement('input')
-
-        div.appendChild(input)
-        container.appendChild(div)
-        div.classList = 'p-1'
-
-        input.type = 'text'
-        input.placeholder = 'Titolo Bottone'
-        input.name = `buttons-${buttons}`
-        input.classList = 'form-control'
-
-        let div1 = document.createElement('div')
-        let input1=document.createElement('input')
-
-        div1.appendChild(input1)
-        container.appendChild(div1)
-        div1.classList = 'p-1'
-        input1.type = 'file'
-        input1.name = `url-${buttons}`
-        classList.classList = 'form-control'
-      buttons += 1
-    }
   </script>
 
 </body>

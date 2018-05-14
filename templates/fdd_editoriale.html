@@ -3,6 +3,7 @@
 
 <head>
   <title id="head_title"></title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -110,39 +111,41 @@
   </div>
 
   <!-- Global NavBar -->
-  <div id="Nav" class="container-fluid" style="background-color:#221E20">
-    <nav class="navbar navbar-expand-md navbar-light ">
-      <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
-        <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
-      </a>
+  <nav class="navbar navbar-expand-md navbar-light ">
+    <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
+      <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
+    </a>
 
-      <a href="index.html" class="mx-auto">
-        <img src="{{url_for('static', filename='fdd/logo.jpg')}}">
-      </a>
+    <a href="index.html" class="mx-auto">
+      <img src="{{url_for('static', filename='fdd/logo.jpg')}}">
+    </a>
 
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ml-auto">
-          <li>
-            <a id="nav_home" class="nav-link" href="index.html" style="">Home</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_presentazione" class="nav-link" href="presentazione.html" style="">Presentazione</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_dd" class="nav-link " href="Danilo-Dolci.html" style="">Danilo Dolci</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="nav_attivita" class="nav-link " href="attivita.html" style="">Attività</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="nav_citazioni" class="nav-link " href="citazioni.html" style="">Citazioni</a>
-          </li>
-          <li class="nav-item">
-            <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ml-auto">
+        <li>
+          <a id="nav_home" class="nav-link" href="index.html" style="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_presentazione" class="nav-link" href="presentazione.html" style="">Presentazione</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_dd" class="nav-link " href="Danilo-Dolci.html" style="">Danilo Dolci</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a id="nav_attivita" class="nav-link " href="attivita.html" style="">Attività</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a id="nav_editoriale" class="nav-link " href="editoriale.html" style="">Editoriale</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
+        </li>
+        <li class="nav-item">
+          <a id="nav_contatti" class="nav-link " href="http://localhost:81/fdd/login" style=""><i class="fas fa-lock white" style="padding-top: 5px;;color: #007bff"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
     <script>
       function openNav() {
         var croce = document.getElementById("croce");
@@ -186,6 +189,7 @@
   <main class="" style="">
     <div class="jumbotron">
       <h1 id="jumbotron" class="text-center"/>
+      <h4 class="text-center"> EDITORIALE</h4>
     </div>
   </main>
 
