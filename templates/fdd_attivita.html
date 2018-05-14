@@ -221,7 +221,7 @@
 
       </div>
       <div class="container-fluid d-flex justify-content-center">
-        <input class="btn btn-info" type="submit" name="" value="Invia">
+        <input id="invia" class="btn btn-info" type="submit" name="" value="Invia">
       </div>
     </form>
   </section>
@@ -265,6 +265,10 @@
         classList.classList = 'form-control'
       buttons += 1
     }
+
+
+    let invia = getElementById('invia')
+    invia.classList+='disabled'
   </script>
 
 </body>
