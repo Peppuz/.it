@@ -12,9 +12,9 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 def index():
 	return render_template('index.html')
 
-@app.route("/spendTheCash")
-def pricing():
-	pass
+@app.route("/curriculum")
+def cv():
+	return render_template('curriculum.html')
 	# return render_template('pricing.html')
 
 # REDIRECTS

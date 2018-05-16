@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-
 <head>
   <title id="head_title"></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
@@ -143,7 +142,7 @@
               <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
             </li>
             <li class="nav-item">
-              <a id="nav_contatti" class="nav-link " href="http://localhost:81/fdd/login" style=""><i class="fas fa-lock white" style="padding-top: 5px;;color: #007bff"></i></a>
+              <a id="nav_lock" class="nav-link activ" href="http://localhost:81/fdd/login" style=""><i class="fas fa-lock white" style="padding-top: 5px;;color: #007bff"></i></a>
             </li>
           </ul>
         </div>
@@ -239,6 +238,9 @@
 
   <!-- Local Script  -->
   <script type="text/javascript">
+    $('.button-wrap').on("click", function(){
+      $(this).toggleClass('button-active');
+    });
     var currentPosition = 'Carica nuovo articolo';
     var buttons = 1;
     inHTML('jumbotron', currentPosition);
