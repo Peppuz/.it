@@ -12,6 +12,13 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 def index():
 	return render_template('index.html')
 
+@app.route("/<input>", methods=['GET'])
+def inline_search(input=None):
+	if not input:
+		return render_template('index.html')
+	else:
+		return redirect('http://ddg.gg/?q='+input)
+
 @app.route("/curriculum")
 def cv():
 	return render_template('curriculum.html')
@@ -48,7 +55,7 @@ def qr(data=None):
 	    border=4)
 	qr.add_data(data)
 	qr.make(fit=True)
-	img = qr.make_image()
+	img = qr.make_image(back_color="transparent")
 	img.save(open("static/qr/%s.png"%data,'wb'))
 
 	img = "qr/%s.png" % data
@@ -60,7 +67,7 @@ def twitter():
 
 @app.route("/tracks")
 def soundcloud():
-	return redirect(url_for('https://soundcloud.com/peppuz/tracks'))
+	return redirect('https://soundcloud.com/peppuz/tracks')
 
 @app.route("/fb")
 def facebook():
