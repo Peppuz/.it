@@ -28,6 +28,7 @@
         font-family: "Soria", Verdana, Tahoma;
         font-size: 300%;
     }
+    :focus {outline: none}
   </style>
 </head>
 
@@ -136,6 +137,7 @@
     </div>
   </section> -->
 
+  <!-- TODO: frontend theme selector -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
@@ -147,6 +149,18 @@
         scrollTop: ($('#' + id + '.section').offset().top)
       }, 1000);
     });
+  </script>
+  <script type="text/javascript">
+    // TODO: User theme based on cache or session
+    function changeTheme(selected){
+      let theme = {
+          "Labirinto":"theme-labirinto",
+          "Biano puro":"theme-white",
+          "Nero Puro":"theme-black"
+      }
+      let body = getElementsByTagName('body')
+      body.classList = theme[selected]
+    }
   </script>
 </body>
 

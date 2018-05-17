@@ -2,6 +2,10 @@
   color: white !important
 }
 
+input {
+  outline: none;
+}
+
 a {
   text-decoration: none !important;
   color: white;
@@ -18,7 +22,7 @@ body {
 }
 
 .w-10{ width: 15%; }
-.bg {
+.theme-labirinto {
   background-image: url('./bg.jpeg');
   background-repeat: repeat;
 }
@@ -77,7 +81,10 @@ body {
 
 
 /* Peppuz Font */
-
+@font-face {
+    font-family: Lato;
+    src: url({{url_for('static', filename="takeplace/Lato-Light.ttf")}});
+}
 
 
 .wrapper,.copyright {

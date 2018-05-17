@@ -1,3 +1,8 @@
+
 *.swp
-__pycache__/
 config.json
+slack_bot.config.json
+
+static/qr/
+static/takeplace
+__pycache__/
