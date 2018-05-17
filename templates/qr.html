@@ -1,0 +1,25 @@
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>QR Generator | Peppuz</title>
+    <style media="screen">
+      body{
+        background-color: black;
+        padding: 50px;
+      }
+      .center, img{
+        margin-right: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+      .center, p{text-align:center;}
+      .white{color:white}
+
+    </style>
+  </head>
+  <body>
+    <h1 class="center white">Peppuz QR Generator !</h1>
+    <p class="center white">Data: {{data}}</p>
+    <img class="center" src="{{url_for('static', filename=img)}}">
+  </body>
+</html>

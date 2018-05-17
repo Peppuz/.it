@@ -1,5 +1,5 @@
-import json, os, ftplib, requests, glob
-from flask import Flask, redirect, url_for, request, render_template, jsonify, abort
+import json, os, ftplib, requests, glob, qrcode
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
 config = json.load(open('config.json'))
@@ -17,6 +17,24 @@ def cv():
 	return render_template('curriculum.html')
 	# return render_template('pricing.html')
 
+@app.route('/qr/<data>')
+def qr(data=None):
+	if not data:
+		render_template('index.html')
+
+	qr = qr = qrcode.QRCode(
+	    version=1,
+	    error_correction=qrcode.constants.ERROR_CORRECT_L,
+	    box_size=10,
+	    border=4,
+	)
+	qr.add_data(data)
+	qr.make(fit=True)
+	img = qr.make_image(fill_color="white", back_color="black")
+	img.save(open("static/qr/%s.png"%data,'wb'))
+
+	img = "qr/%s.png" % data
+	return render_template('qr.html', data=data, img=img)
 # REDIRECTS
 @app.route("/twitter")
 def twitter():
