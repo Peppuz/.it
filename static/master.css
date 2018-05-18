@@ -1,3 +1,7 @@
+* {
+  font-family: Lato;
+}
+
 :root {
   --main-bg-color: black;
   --main-color: white;
@@ -5,12 +9,12 @@
 
 input {
   outline: none;
-  color: var(--main-bg-color);
-  background-color: var(--main-color)
+  color: var(--main-color);
+  background-color: var(--main-bg-color)
 }
 
 input::placeholder {
-  color: var(--main-bg-color);
+  color: var(--main-color);
 }
 h1 {
   color: var(--main-color);

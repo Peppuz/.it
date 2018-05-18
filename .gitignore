@@ -1,8 +1,9 @@
-
 *.swp
 config.json
 slack_bot.config.json
 
 static/qr/
 static/takeplace
+templates/takeplace
+templates/fdd
 __pycache__/
