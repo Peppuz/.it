@@ -1,22 +1,31 @@
 <html lang="it" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>QR Generator | Peppuz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="{{url_for('static', filename='gear.png')}}" />
+    <link rel="icon" href="{{url_for('static', filename='gear.png')}}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='demo.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='component.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
+
+    <script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
 
     <style media="screen">
-      * {font-family: Lato;}
-      body{padding: 5rem; }
       div {
         vertical-align: middle;
       }
-      .center{
-        margin-right: auto !important;
-        margin-right: auto !important;
-      }
+
       .center, img{width: 100%;}
       .center, p{text-align:center;}
-      .white{color:white}
       h1 {margin-bottom:7rem}
       input {
         width: 20rem;
@@ -26,16 +35,15 @@
         border-top: none;
         border-left: none;
         border-right: none;
-
-        background:none;
-        color: white;
+        border-radius:8px;
+        color: var(--main-bg-color);
         text-align: center;
         font-size: 1rem;
       }
       input:focus{outline: none}
       input[type=submit]{
-        background-color: white;
-        color: black;
+        background-color: var(--main-color);
+        color: var(--main-bg-color);
         border-radius: 8px;
         font-size: 1rem;
       }
@@ -46,21 +54,19 @@
         color: black;
         border-radius: 8px;
       }
-      ::placeholder {color:white; text-align: center; font-size: 1rem; padding-bottom:1rem}
-      :-moz-placeholder {color:white; text-align: center; font-size: 1rem; padding-bottom:1rem}
-      ::-moz-placeholder {color:white; text-align: center; font-size: 1rem; padding-bottom:1rem}
-      ::-webkit-input-placeholder {color:white; text-align: center; font-size: 1rem; padding-bottom:1rem}
       img {padding: 1rem;}
 
     </style>
   </head>
-  <body class="bg">
+  <body onload="onLoadTheme()">
   {% if not img %}
-    <div>
-      <h1 class="center white ">Peppuz QR Generator</h1>
+    <div class="container mx-auto">
+      <a href="{{url_for('index')}}">
+        <h1 class="center white ">Peppuz QR Generator</h1>
+      </a>
       <form action="#" method="POST" class="center">
-        <input type="text" name="qr" placeholder="Type whatever tha fuck u want">
-        <input type="submit" value="Generate that shiet">
+        <input type="text" name="qr" placeholder="> Type whatever tha fuck u want <">
+        <input type="submit"> </input>
       </form>
     </div>
   {% else %}
