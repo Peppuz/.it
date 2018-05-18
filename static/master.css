@@ -1,14 +1,35 @@
-.white{
-  color: white;
+:root {
+  --main-bg-color: black;
+  --main-color: white;
 }
 
 input {
   outline: none;
+  color: var(--main-bg-color);
+  background-color: var(--main-color)
+}
+
+input::placeholder {
+  color: var(--main-bg-color);
+}
+h1 {
+  color: var(--main-color);
+}
+
+nav a {
+  color: var(--main-color);
+}
+
+nav:focus a:focus {
+  text-decoration-color: var(--main-color);
 }
 
 a {
+  color: var(--main-color);
+}
+
+a:hover {
   text-decoration: none !important;
-  color: white;
 }
 
 html {
@@ -16,6 +37,7 @@ html {
 }
 
 body {
+  background-color: var(--main-bg-color);
   margin: 0;
   padding: 0;
   height: 100%;
@@ -115,8 +137,7 @@ hr{
   	height: 50px;
   	line-height: 50px;
   	text-align: center;
-  	color: #FFF;
-  	color: rgba(255, 255, 255, 0.8);
+  	color: var(--main-color);
   	-webkit-transition: all 0.3s ease-in-out;
   	-moz-transition: all 0.3s ease-in-out;
   	-ms-transition: all 0.3s ease-in-out;
@@ -135,7 +156,7 @@ hr{
   }
 
   .social-icons .fa:hover, .social-icons .fa:active {
-  	color: #FFF;
+  	color: var(--main-color);
   	-webkit-box-shadow: 1px 1px 3px #333;
   	-moz-box-shadow: 1px 1px 3px #333;
   	box-shadow: 1px 1px 3px #333;
@@ -191,37 +212,27 @@ hr{
 
 
 .theme-labirint {
-  background-image: url({{url_for('static', filename='bg.jpeg')}});
+  background-image: url("{{url_for('static', filename='bg.jpeg')}}");
   background-repeat: repeat;
 
 }
 
-.theme-white{
-  background-color: white;
-  color: black !important;
-}
-
-.theme-black {
-  background-color: black;
-  color: white !important;
-}
-
-.theme-grey {
-  background-color: grey;
-  color: white !important;
-}
-
- .tap-me{
+.tap-me{
   align-items: center;
   display: flex;
-  padding: .3rem;
-  border: 1px solid white;
+  opacity: 0.8;
+
+
+  margin: 2rem;
+  margin-right: -15px;
+
+  /* border: 1px solid var(--main-color); */
   border-right: none;
   border-radius:14px;
-  font-size: 0.7rem;
 
-  margin-top: 2.25rem;
-  margin-right: -1rem;
+  font-size: 0.7rem;
+  color: var(--main-color);
+
 }
 
 

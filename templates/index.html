@@ -18,27 +18,101 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
 
   <script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
+  <script type="text/javascript">
+    function setCookie(name,value) {
+        var expires = "";
+        var date = new Date();
+        date.setTime(date.getTime() + (30*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    function onLoadTheme(){
+      let element  = document.getElementById('main')
+      let color = getCookie('text')
+      let bg = getCookie('bg')
+      element.style.setProperty("--main-color", color);
+      element.style.setProperty('--main-bg-color', bg)
+    }
 
+    // function changeTheme(val){
+    //   let hue = `hsl(${val}, 100%, 50%)`
+    //   let element = document.getElementById('main')
+    //   element.style.setProperty("--main-bg-color", hue);
+    //   setCookie("bg",hue)
+    // }
+    function changeTheme(val){
+      let element = document.getElementById('main')
+      element.style.setProperty("--main-bg-color", val);
+      setCookie("bg",val)
+    }
+    function changeText(val){
+      let element = document.getElementById('main')
+      element.style.setProperty("--main-color", val);
+      setCookie("text",val)
+    }
+
+
+    function showPickers(){
+      let tap = document.getElementById('tap')
+      let bg = document.getElementById('bg-picker')
+      let text = document.getElementById('text-picker')
+
+      if (tap.classList.contains('active')) {
+        tap.classList.remove("active")
+        tap.classList.add("hidden")
+
+        bg.classList.add("active")
+        bg.classList.remove("hidden")
+
+        text.classList.add("active")
+        text.classList.remove("hidden")
+      }
+      else {
+          tap.classList.add("active")
+          tap.classList.remove("hidden")
+
+          bg.classList.remove("active")
+          bg.classList.add("hidden")
+
+          text.classList.remove("active")
+          text.classList.add("hidden")
+      }
+    }
+  </script>
 </head>
 
-<body id="main">
-
+<body id="main" onload="onLoadTheme()">
   <section class="section justify-content-center align-items-center" id="Home">
     <!-- PEPPUZ -->
-    <div class="container  d-flex justify-content-center">
+    <div class="container d-flex justify-content-center" style="color:inherit">
       <div class="row">
-        <a class="">
-          <p class="float-left white tap-me">tap me! --></p>
+
+        <p id="tap" class="tap-me float-left active">tap me ! ></p>
+        <p class="hidden">BG </p>
+        <input class="hidden" style="margin:2.25rem" id="bg-picker" oninput="changeTheme(this.value)" onchange="changeTheme(this.value)" type="color" value="#ff0000">
+
+        <a onclick="showPickers()">
           <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='gear_white.png')}}"  style="width:100px; height:100px">
         </a>
 
-        <a class="row" href="{{url_for('index')}}">
-          <h1 class="white pt-2">Peppuz</h1>
+        <a class="row" style="margin-right:.5rem" href="{{url_for('index')}}">
+          <h1 class="pt-2" >Peppuz</h1>
         </a>
-      </div>
-      <div class="hidden">
 
+        <!-- <input class="hidden" id="text-picker" oninput="changeText(this.value)" onchange="changeText(this.value)" type="range" name="slideRed" min="0" max="360"> -->
+        <input class="hidden " style="margin:2.25rem" type="color" id="text-picker" onchange="changeText(this.value)" value="#ff0000">
       </div>
+
 
     </div>
 
@@ -75,10 +149,10 @@
         <a href="#"><!-- TODO: if adroid link to Google Play -->
           <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-2">
+        <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
-          <i class="fab white fa-app-store "></i>
-          <i class="fab white fa-google-play "></i>
+          <i class="fab  fa-app-store "></i>
+          <i class="fab  fa-google-play "></i>
           <br> Orari STP 3 <br>
 
         </p>
@@ -88,7 +162,7 @@
         <a href="{{ url_for('demcar') }}">
           <img src="{{url_for('static', filename='DemCar.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-2">
+        <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
           <i class="fas fa-globe "></i>
           <br>  DemCar Auto
@@ -101,7 +175,7 @@
         <a href="{{ url_for('fdd') }}">
           <img src="{{url_for('static', filename='fdd_logo.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-2">
+        <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
           <i class="fas fa-globe "></i>
           <br> Fondo Danilo Dolci <br>
@@ -112,7 +186,7 @@
         <a href="#">
           <img src="{{url_for('static', filename='ytdl.png')}}" class="img-fluid w-50">
         </a>
-        <p class="white text-center p-2">
+        <p class=" text-center p-2">
           <i class="fa fa-github fa-2x"></i>
           <br> YT Downloader Bot
         </p>
@@ -139,7 +213,7 @@
 
   <div class="container">
     <div class="row">
-      <button type="button" class="btn theme-labirit" onclick="changeTheme('Labirinto')" name="button"></button>
+      <button type="button" class="btn theme-labirit" onclick="changeTheme()" name="button"></button>
       <button type="button" class="btn theme- " onclick="changeTheme('Bianco Puro')" name="button"></button>
       <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
       <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
@@ -147,25 +221,7 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-    // TODO: User theme based on cache or session
-    function changeTheme(selected){
-      let theme = {
-          "Labirinto":"url({{url_for('static', filename='bg.jpeg')}})",
-          "Biano puro":"white",
-          "Nero Puro":"black"
-      }
-      let body = document.getElementById('main')
-      switch (selected) {
-        case "Labirinto":
-          body.style.backgroundColor = theme[selected]
-          break;
-        default:
-          body.classList = 'theme-black'
-      }
-    }
-    changeTheme("Nero Puro")
-  </script>
+
   <style>
     @font-face {
         font-family: "Soria";
