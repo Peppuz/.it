@@ -18,29 +18,28 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
 
   <script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
-  <style>
-    @font-face {
-        font-family: "Soria";
-        src: url({{url_for('static', filename='soria-font.ttf')}});
 
-    }
-    .customfont {
-        font-family: "Soria", Verdana, Tahoma;
-        font-size: 300%;
-    }
-    :focus {outline: none}
-  </style>
 </head>
 
-<body class="bg">
+<body id="main">
 
   <section class="section justify-content-center align-items-center" id="Home">
     <!-- PEPPUZ -->
-    <div class="container d-flex justify-content-center">
-      <a class="row" href="{{url_for('index')}}">
-        <img src="{{url_for('static', filename='gear_white.png')}}" class="img-fluid image p-4 mx-0" style="width:100px; height:100px">
-        <h1 class="white my-4 customfont">Peppuz</h1>
-      </a>
+    <div class="container  d-flex justify-content-center">
+      <div class="row">
+        <a class="">
+          <p class="float-left white tap-me">tap me! --></p>
+          <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='gear_white.png')}}"  style="width:100px; height:100px">
+        </a>
+
+        <a class="row" href="{{url_for('index')}}">
+          <h1 class="white pt-2">Peppuz</h1>
+        </a>
+      </div>
+      <div class="hidden">
+
+      </div>
+
     </div>
 
     <!-- Search bar -->
@@ -52,6 +51,7 @@
         </div>
       </form>
     </div>
+
     <!-- Buttons -->
     <nav class="container text-center cl-effect-9">
       <div class="col p-2">
@@ -137,10 +137,47 @@
     </div>
   </section> -->
 
-  <!-- TODO: frontend theme selector -->
+  <div class="container">
+    <div class="row">
+      <button type="button" class="btn theme-labirit" onclick="changeTheme('Labirinto')" name="button"></button>
+      <button type="button" class="btn theme- " onclick="changeTheme('Bianco Puro')" name="button"></button>
+      <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
+      <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // TODO: User theme based on cache or session
+    function changeTheme(selected){
+      let theme = {
+          "Labirinto":"url({{url_for('static', filename='bg.jpeg')}})",
+          "Biano puro":"white",
+          "Nero Puro":"black"
+      }
+      let body = document.getElementById('main')
+      switch (selected) {
+        case "Labirinto":
+          body.style.backgroundColor = theme[selected]
+          break;
+        default:
+          body.classList = 'theme-black'
+      }
+    }
+    changeTheme("Nero Puro")
+  </script>
+  <style>
+    @font-face {
+        font-family: "Soria";
+        src: url({{url_for('static', filename='soria-font.ttf')}});
 
+    }
+    .customfont {
+        font-family: "Soria", Verdana, Tahoma;
+        font-size: 300%;
+    }
+    :focus {outline: none}
+  </style>
   <script type="text/javascript">
     $('.linch').click(function() {
       var id = $(this).attr('id');
@@ -150,18 +187,7 @@
       }, 1000);
     });
   </script>
-  <script type="text/javascript">
-    // TODO: User theme based on cache or session
-    function changeTheme(selected){
-      let theme = {
-          "Labirinto":"theme-labirinto",
-          "Biano puro":"theme-white",
-          "Nero Puro":"theme-black"
-      }
-      let body = getElementsByTagName('body')
-      body.classList = theme[selected]
-    }
-  </script>
+
 </body>
 
 </html>
