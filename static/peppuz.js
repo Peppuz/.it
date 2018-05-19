@@ -17,47 +17,45 @@ function getCookie(name) {
 }
 function onLoadTheme(){
   let element  = document.getElementById('main')
-  let color = getCookie('text')
   let bg = getCookie('bg')
+  let hue = `hsl(${bg}, 100%, 50%)`
+  console.log(hue);
+  element.style.setProperty("--main-bg-color", hue);
+
+  let r = getCookie('text-r')
+  let g = getCookie('text-g')
+  let b = getCookie('text-b')
+  let color = `rgb(${r},${g},${b})`
+  console.log(color);
   element.style.setProperty("--main-color", color);
-  element.style.setProperty('--main-bg-color', bg)
+
 }
 
 function changeTheme(val){
-  let element = document.getElementById('main')
-  element.style.setProperty("--main-bg-color", val);
   setCookie("bg",val)
+  onLoadTheme()
 }
-function changeText(val){
+function changeText(where, val){
   let element = document.getElementById('main')
-  element.style.setProperty("--main-color", val);
-  setCookie("text",val)
+  setCookie(`text-${where}`, val)
+  onLoadTheme()
 }
-
-
 function showPickers(){
   let tap = document.getElementById('tap')
-  let bg = document.getElementById('bg-picker')
-  let text = document.getElementById('text-picker')
+  let theme = document.getElementById('theme-div')
 
   if (tap.classList.contains('active')) {
     tap.classList.remove("active")
     tap.classList.add("hidden")
 
-    bg.classList.add("active")
-    bg.classList.remove("hidden")
-
-    text.classList.add("active")
-    text.classList.remove("hidden")
+    theme.classList.add("active")
+    theme.classList.remove("hidden")
   }
   else {
-      tap.classList.add("active")
-      tap.classList.remove("hidden")
+    tap.classList.add("active")
+    tap.classList.remove("hidden")
 
-      bg.classList.remove("active")
-      bg.classList.add("hidden")
-
-      text.classList.remove("active")
-      text.classList.add("hidden")
+    theme.classList.remove("active")
+    theme.classList.add("hidden")
   }
 }

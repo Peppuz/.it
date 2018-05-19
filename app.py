@@ -2,8 +2,6 @@ import json, os, ftplib, requests, glob, qrcode
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
-config = json.load(open('config.json'))
-print(config)
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
@@ -35,7 +33,7 @@ def qrgen():
 		    border=4)
 		qr.add_data(data)
 		qr.make(fit=True)
-		img = qr.make_image(fill_color="white", back_color="black")
+		img = qr.make_image(fill_color="black", back_color="transparent")
 		img.save(open("static/qr/%s.png"%data,'wb'))
 
 		img = "qr/%s.png" % data
@@ -60,6 +58,15 @@ def qr(data=None):
 
 	img = "qr/%s.png" % data
 	return render_template('qr.html', data=data, img=img)
+
+
+@app.route('/takeplace')
+def takeplace():
+	# TODO: Slack alert integration
+	# request.remote_addr
+	return render_template('takeplace.html')
+
+
 # REDIRECTS
 @app.route("/twitter")
 def twitter():

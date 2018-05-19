@@ -14,69 +14,65 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='demo.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='component.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
-
     <script src="{{ url_for('static', filename='modernizr.custom.js') }}"></script>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='master.css') }}">
-
-    <style media="screen">
-      div {
-        vertical-align: middle;
-      }
-
-      .center, img{width: 100%;}
-      .center, p{text-align:center;}
-      h1 {margin-bottom:7rem}
-      input {
-        width: 20rem;
-        margin-bottom: 3rem;
-
-        border: 1px solid white;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-radius:8px;
-        color: var(--main-bg-color);
-        text-align: center;
-        font-size: 1rem;
-      }
-      input:focus{outline: none}
-      input[type=submit]{
-        background-color: var(--main-color);
-        color: var(--main-bg-color);
-        border-radius: 8px;
-        font-size: 1rem;
-      }
-      .button{
-        width: 15rem;
-        display: inline-block;
-        background-color: white;
-        color: black;
-        border-radius: 8px;
-      }
-      img {padding: 1rem;}
-
-    </style>
+    <script src="{{ url_for('static', filename='peppuz.js') }}"></script>
   </head>
-  <body onload="onLoadTheme()">
-  {% if not img %}
-    <div class="container mx-auto">
-      <a href="{{url_for('index')}}">
-        <h1 class="center white ">Peppuz QR Generator</h1>
-      </a>
-      <form action="#" method="POST" class="center">
-        <input type="text" name="qr" placeholder="> Type whatever tha fuck u want <">
-        <input type="submit"> </input>
-      </form>
-    </div>
-  {% else %}
-    <h1 class="center white">Peppuz QR Generator !</h1>
-    <div class="center">
-      <a href="{{url_for('qrgen')}}" class="center button">Another One!</a>
-      <p class="white">Data: {{data}}</p>
-      <img src="{{url_for('static', filename=img)}}">
-    </div>
+  <body id="main" onload="onLoadTheme()">
+    <div class="container mx-auto text-center">
+      <div class="container d-flex justify-content-center" style="color:inherit">
+        <div class="row">
+          <div class="mx-auto">
+            <p id="tap" class="tap-me float-left pt-2 active">tap me ! ></p>
+            <a onclick="showPickers()" class="">
+              <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='gear_white.png')}}"  style="width:100px; height:100px">
+            </a>
+            <a class="float-right" style="margin-left:-1rem" href="{{url_for('index')}}">
+              <h1 class="pt-2" >Peppuz</h1>
+            </a>
+          </div>
+          <div id="theme-div" class="hidden" >
+            <div class="text-center">
+              <p>Background HSL</p>
+              <input class="" style="margin:2.25rem" id="bg-picker" oninput="changeTheme(this.value)" onchange="changeTheme(this.value)" type="range" min="0" max="360" value="#ff0000">
+              <div class="">
+                  <button type="button" class="" name="button" onclick=""> Black </button>
+              </div>
+            </div>
 
-  {% endif %}
+            <div class="container mt-1 p-3 text-center">
+              <p>Text RGB</p>
+              <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-r" onchange="changeText('r', this.value)" value="#ff0000">
+              <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-g" onchange="changeText('g', this.value)" value="#ff0000">
+              <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-b" onchange="changeText('b', this.value)" value="#ff0000">
+            </div>
+
+          </div>
+
+          <!-- <input class="hidden" id="text-picker" oninput="changeText(this.value)" onchange="changeText(this.value)" type="range" name="slideRed" min="0" max="360"> -->
+
+        </div>
+
+
+      </div>
+
+    {% if not img %}
+        <a href="{{url_for('index')}}">
+          <h1 class="color">QR Gen</h1>
+        </a>
+        <form action="#" method="POST" class="">
+          <input class="searchbar col-6 m-3" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
+          <input class="btn col-6 m-3" type="submit" value="Generate tha shiet"> </input>
+        </form>
+    {% else %}
+      <h1 class="center ">QR Gen </h1>
+      <div class="center">
+        <p class="white">Data: {{data}}</p>
+        <img src="{{url_for('static', filename=img)}}">
+        <a href="{{url_for('qrgen')}}" class="center btn mt-3">Another One!</a>
+
+      </div>
+    {% endif %}
+    </div>
   </body>
 </html>

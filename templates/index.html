@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <html lang="it" dir="ltr">
-
 <head>
   <title>Peppuz ❤️ </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,23 +24,35 @@
     <!-- PEPPUZ -->
     <div class="container d-flex justify-content-center" style="color:inherit">
       <div class="row">
+        <div class="mx-auto">
+          <p id="tap" class="tap-me float-left pt-2 active">tap me ! ></p>
+          <a onclick="showPickers()" class="">
+            <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='gear_white.png')}}"  style="width:100px; height:100px">
+          </a>
+          <a class="float-right" style="margin-left:-1rem" href="{{url_for('index')}}">
+            <h1 class="pt-2" >Peppuz</h1>
+          </a>
+        </div>
+        <div id="theme-div" class="hidden" >
+          <div class="text-center">
+            <p>Background HSL</p>
+            <input class="" style="margin:2.25rem" id="bg-picker" oninput="changeTheme(this.value)" onchange="changeTheme(this.value)" type="range" min="0" max="360" value="#ff0000">
+            <div class="">
+              <button type="button" class="btn" name="button" onclick=""> Black </button>
+            </div>
+          </div>
 
-        <p id="tap" class="tap-me float-left active">tap me ! ></p>
-        <p class="hidden">BG </p>
-        <input class="hidden" style="margin:2.25rem" id="bg-picker" oninput="changeTheme(this.value)" onchange="changeTheme(this.value)" type="color" value="#ff0000">
+          <div class="container mt-1 p-3 text-center">
+            <p>Text RGB</p>
+            <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-r" onchange="changeText('r', this.value)" value="#ff0000">
+            <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-g" onchange="changeText('g', this.value)" value="#ff0000">
+            <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-b" onchange="changeText('b', this.value)" value="#ff0000">
+          </div>
 
-        <a onclick="showPickers()" class="image">
-          <i class="fa fa-gear image fa-3x "></i>
-
-          <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='gear_white.png')}}"  style="width:100px; height:100px">
-        </a>
-
-        <a class="row" style="margin-right:.5rem" href="{{url_for('index')}}">
-          <h1 class="pt-2" >Peppuz</h1>
-        </a>
+        </div>
 
         <!-- <input class="hidden" id="text-picker" oninput="changeText(this.value)" onchange="changeText(this.value)" type="range" name="slideRed" min="0" max="360"> -->
-        <input class="hidden " style="margin:2.25rem" type="color" id="text-picker" onchange="changeText(this.value)" value="#ff0000">
+
       </div>
 
 
@@ -50,16 +60,16 @@
 
     <!-- Search bar -->
     <div class="container d-flex justify-content-center">
-      <form class="form-group" method="GET" action="https://ddg.gg/" autocomplete="off">
-        <div class="container-fluid h-25 row searchbar">
-          <img class="col-3 img-fluid w-25" src="{{ url_for('static', filename="ddg.svg") }}">
-          <input type="text" class="col-9 searchbar-input " name="q" placeholder="DuckDuckGo Search..." autofocus>
+      <form class="form-group mb-5" method="GET" action="https://ddg.gg/" autocomplete="off">
+        <div class="container-fluid searchbar">
+          <img class="col-3 img-fluid float-left" src="{{ url_for('static', filename="ddg.svg") }}">
+          <input type="text" class="col-9 searchbar-input float-right p-3 mt-1" name="q" placeholder="DuckDuckGo Search..." autofocus>
         </div>
       </form>
     </div>
 
     <!-- Buttons -->
-    <nav class="container text-center cl-effect-9">
+    <nav class="container mt-5 text-center cl-effect-9">
       <div class="col p-2">
         <a class="linch text-center" id="Proj" href="#">Projects</a>
       </div>
@@ -105,7 +115,7 @@
     <div class="text-center row p-3">
       <div class="col col-lg-4 offset-lg-2">
         <a href="{{ url_for('fdd') }}">
-          <img src="{{url_for('static', filename='fdd_logo.png')}}" class="img-fluid w-50">
+          <img src="{{url_for('static', filename='fdd/fdd_logo.png')}}" class="img-fluid w-50">
         </a>
         <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
@@ -119,10 +129,21 @@
           <img src="{{url_for('static', filename='ytdl.png')}}" class="img-fluid w-50">
         </a>
         <p class=" text-center p-2">
-          <i class="fa fa-github fa-2x"></i>
+          <i class="fab fa-github"></i>
+          <i class="fa fa-paper-plane"></i>
+
           <br> YT Downloader Bot
         </p>
       </div>
+    </div>
+
+    <div class="col m-2">
+      <p class="text-center">
+        Legend : <br>
+        <i class="fab fa-github"></i> public | private <i class="fa fa-lock"></i><br>
+        <i class="fab fa-app-store"></i> App store | Play store <i class="fab fa-google-play"></i><br>
+        <i class="fas fa-globe"></i> Web Site | Telegram <i class="fa fa-paper-plane"></i>
+      </p>
     </div>
   </section>
 
@@ -142,15 +163,6 @@
   	  	</ul>
     </div>
   </section> -->
-
-  <div class="container">
-    <div class="row">
-      <button type="button" class="btn theme-labirit" onclick="changeTheme()" name="button"></button>
-      <button type="button" class="btn theme- " onclick="changeTheme('Bianco Puro')" name="button"></button>
-      <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
-      <button type="button" class="btn theme-" onclick="changeTheme('Labirinto')" name="button"></button>
-    </div>
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 

@@ -9,13 +9,22 @@
 
 input {
   outline: none;
+  color: var(--main-bg-color);
+  background-color: var(--main-color)
+}
+input:focus{outline: none}
+input::placeholder {
+  color: var(--main-bg-color);
+}
+input::placeholder:focus{
   color: var(--main-color);
-  background-color: var(--main-bg-color)
 }
 
-input::placeholder {
-  color: var(--main-color);
+.cl-effect-9 a::before,
+.cl-effect-9 a::after {
+	background: var(--main-color);
 }
+
 h1 {
   color: var(--main-color);
 }
@@ -28,12 +37,13 @@ nav:focus a:focus {
   text-decoration-color: var(--main-color);
 }
 
-a {
+a , p{
   color: var(--main-color);
 }
 
 a:hover {
   text-decoration: none !important;
+  color: inherit;
 }
 
 html {
