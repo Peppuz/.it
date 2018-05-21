@@ -74,7 +74,7 @@ def twitter():
 
 @app.route("/tracks")
 def soundcloud():
-	return redirect('https://soundcloud.com/peppuz/tracks')
+	return redirect('https://soundcloud.com/peppu_z/tracks')
 
 @app.route("/fb")
 def facebook():
