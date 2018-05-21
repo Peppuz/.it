@@ -18,6 +18,8 @@ function getCookie(name) {
 function onLoadTheme(){
   let element  = document.getElementById('main')
   let bg = getCookie('bg')
+  if (bg == null)
+    bg = '0'
   let hue = `hsl(${bg}, 100%, 50%)`
   console.log(hue);
   element.style.setProperty("--main-bg-color", hue);
@@ -26,6 +28,8 @@ function onLoadTheme(){
   let g = getCookie('text-g')
   let b = getCookie('text-b')
   let color = `rgb(${r},${g},${b})`
+  if (r == null)
+    color = 'rgb(0,0,0)'
   console.log(color);
   element.style.setProperty("--main-color", color);
 

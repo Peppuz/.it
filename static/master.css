@@ -25,6 +25,12 @@ input::placeholder:focus{
 	background: var(--main-color);
 }
 
+.qrcode {
+  background: none;
+  color: var(--main-color);
+  border: none;
+}
+
 h1 {
   color: var(--main-color);
 }

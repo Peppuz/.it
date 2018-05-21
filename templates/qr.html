@@ -19,7 +19,7 @@
     <script src="{{ url_for('static', filename='peppuz.js') }}"></script>
   </head>
   <body id="main" onload="onLoadTheme()">
-    <div class="container mx-auto text-center">
+    <div class="section justify-content-center align-items-center text-center">
       <div class="container d-flex justify-content-center" style="color:inherit">
         <div class="row">
           <div class="mx-auto">
@@ -60,9 +60,11 @@
         <a href="{{url_for('index')}}">
           <h1 class="color">QR Gen</h1>
         </a>
-        <form action="#" method="POST" class="">
-          <input class="searchbar col-6 m-3" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
-          <input class="btn col-6 m-3" type="submit" value="Generate tha shiet"> </input>
+        <form action="#" method="POST" class="m-3">
+          <input class="searchbar col-6" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
+          <div class="mt-3">
+              <button type="submit" name="button" class="qrcode"><i class="fa fa-qrcode fa-3x"></i></button>
+          </div>
         </form>
     {% else %}
       <h1 class="center ">QR Gen </h1>
