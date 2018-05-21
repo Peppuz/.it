@@ -47,9 +47,6 @@
           </div>
 
         </div>
-
-        <!-- <input class="hidden" id="text-picker" oninput="changeText(this.value)" onchange="changeText(this.value)" type="range" name="slideRed" min="0" max="360"> -->
-
       </div>
 
 
@@ -59,7 +56,7 @@
     <div class="container d-flex justify-content-center">
       <form class="form-group mb-5" method="GET" action="https://ddg.gg/" autocomplete="off">
         <div class="container-fluid searchbar">
-          <img class="col-3 img-fluid float-left" src="{{ url_for('static', filename="ddg.svg") }}">
+          <img class="col-3 img-fluid float-left" src="{{ url_for('static', filename="pics/ddg.svg") }}">
           <input type="text" class="col-9 searchbar-input float-right p-3 mt-1" name="q" placeholder="DuckDuckGo Search..." autofocus>
         </div>
       </form>
@@ -76,9 +73,9 @@
       <div class="col p-2">
         <a class=" linch text-center" href="{{url_for('qrgen')}}">QR Gen</a>
       </div>
-      <div class="col p-2">
+      <!-- <div class="col p-2">
         <a class="linch text-center" id="Contacts" href="#">Contacts</a>
-      </div>
+      </div> -->
     </nav>
   </section>
 
@@ -86,7 +83,7 @@
     <div class="text-center row p-3">
       <div class="col col-lg-4 offset-lg-2">
         <a href="#"><!-- TODO: if adroid link to Google Play -->
-          <img src="{{url_for('static', filename='ostp_icon.png')}}" class="img-fluid w-50">
+          <img src="{{url_for('static', filename='pics/ostp_icon.png')}}" class="img-fluid w-50">
         </a>
         <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
@@ -99,7 +96,7 @@
 
       <div class="col col-lg-4">
         <a href="{{ url_for('demcar') }}">
-          <img src="{{url_for('static', filename='DemCar.png')}}" class="img-fluid w-50">
+          <img src="{{url_for('static', filename='pics/DemCar.png')}}" class="img-fluid w-50">
         </a>
         <p class=" text-center p-2">
           <i class="fa fa-lock"></i>
@@ -123,7 +120,7 @@
 
       <div class="col col-lg-4">
         <a href="#">
-          <img src="{{url_for('static', filename='ytdl.png')}}" class="img-fluid w-50">
+          <img src="{{url_for('static', filename='pics/ytdl.png')}}" class="img-fluid w-50">
         </a>
         <p class=" text-center p-2">
           <i class="fab fa-github"></i>
