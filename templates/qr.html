@@ -1,4 +1,5 @@
 <html lang="it" dir="ltr">
+
   <head>
     <title>QR Generator | Peppuz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -69,9 +70,13 @@
     {% else %}
       <h1 class="center ">QR Gen </h1>
       <div class="center">
-        <p class="white">Data: {{data}}</p>
+        <div class="container mx-auto">
+          <a href="{{url_for('qrgen')}}" class="mx-auto btn mt-3"><i class="fa fa-qrcode"> </i> Another One!</a>
+        </div>
         <img src="{{url_for('static', filename=img)}}">
-        <a href="{{url_for('qrgen')}}" class="center btn mt-3">Another One!</a>
+        <p style="color:black">data: {{data}}</p>
+
+
 
       </div>
     {% endif %}
