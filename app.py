@@ -22,6 +22,7 @@ def cv():
 	return render_template('curriculum.html')
 	# return render_template('pricing.html')
 
+# QR Generator
 @app.route('/qr', methods=['POST', 'GET'])
 def qrgen():
 	if request.method == 'POST' and request.form:
@@ -92,6 +93,9 @@ def telegram():
 def youtube2():
 	return redirect('https://ddg.gg')
 
+@app.route('/webmail')
+def aruba_mail():
+	return redirect('https://webmail.aruba.it')
 
 # DemCar redirect
 @app.route('/dc')

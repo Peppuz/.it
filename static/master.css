@@ -7,6 +7,17 @@
   --main-color: white;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 input {
   outline: none;
   color: var(--main-bg-color);
@@ -20,6 +31,12 @@ input::placeholder:focus{
   color: var(--main-color);
 }
 
+h1, h2, h3, h4, h5, h6, a, p {
+  color: var(--main-color);
+}
+
+
+/* Animations Buttons Section 1  */
 .cl-effect-9 a::before,
 .cl-effect-9 a::after {
 	background: var(--main-color);
@@ -31,9 +48,6 @@ input::placeholder:focus{
   border: none;
 }
 
-h1 {
-  color: var(--main-color);
-}
 
 nav a {
   color: var(--main-color);
@@ -43,25 +57,11 @@ nav:focus a:focus {
   text-decoration-color: var(--main-color);
 }
 
-a , p{
-  color: var(--main-color);
-}
-
 a:hover {
   text-decoration: none !important;
   color: inherit;
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  background-color: var(--main-bg-color);
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
 .w-10{ width: 15%; }
 
@@ -144,8 +144,6 @@ hr{
 	padding-left: 5px;
 	margin-bottom: 10px;
 }
-
-/*---- Genral classes end -------*/
 
 /*Change icons size here*/
 .social-icons .fa {
