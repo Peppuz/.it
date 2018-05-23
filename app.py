@@ -1,13 +1,50 @@
-import json, os, ftplib, requests, glob, qrcode
+import json, os, ftplib, requests, glob, qrcode, pymysql.cursors
+import telegram
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+config = json.load(open('config.json'))
+tg_token = config['bot']['telegram']['token']
+bot = telegram.Bot(tg_token)
+	# connection = pymysql.connect(
+	# 	host='localhost',
+	# 	user='root',
+	# 	password='root',
+	# 	db='',
+	# 	cursorclass=pymysql.cursors.DictCursor)
+
+
+	# EXAMPLE MYSQL
+	# try:
+	#     with connection.cursor() as cursor:
+	#         # Create a new record
+	#         sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+	#         cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+	#
+
+	#     # connection is not autocommit by default. So you must commit to save
+	#     # your changes.
+	#     connection.commit()
+	#
+	#     with connection.cursor() as cursor:
+	#         # Read a single record
+	#         sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+	#         cursor.execute(sql, ('webmaster@python.org',))
+	#         result = cursor.fetchone()
+	#         print(result)
+	# finally:
+	#     connection.close()
 app.config['UPLOAD_FOLDER'] = 'uploads/'
+
 
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
+	bot.send_message(
+		config['bot']['telegram']['peppuz'],
+		"%s GET index." % request.remote_addr
+		)
 	return render_template('index.html')
 
 @app.route("/<input>", methods=['GET'])
@@ -77,6 +114,7 @@ def twitter():
 def soundcloud():
 	return redirect('https://soundcloud.com/peppu_z/tracks')
 
+@app.route("/facebook")
 @app.route("/fb")
 def facebook():
 	return redirect('https://facebook.com/p3ppu')
@@ -98,14 +136,14 @@ def aruba_mail():
 	return redirect('https://webmail.aruba.it')
 
 # DemCar redirect
-@app.route('/dc')
 @app.route('/demcar')
+@app.route('/dc')
 def demcar():
 	return redirect("http://demcar.it")
 
 # Fondo Danilo Dolci redirect
-@app.route("/fdd")
 @app.route("/fondodanilodolci")
+@app.route("/fdd")
 def fdd():
 	return redirect("http://fondodanilodolci.it")
 
