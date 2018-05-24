@@ -43,7 +43,6 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 def index():
 	if 'peppuz' not in request.cookies:
 		ip = parse_ip(request.remote_addr)
-		return jsonify(ip)
 		text = "%s GET index\nFrom %s, %s, %s " \
 			% (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
 		bot.send_message(config['bot']['telegram']['peppuz'],text)
