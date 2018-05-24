@@ -42,10 +42,11 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 @app.route("/", methods=['GET'])
 def index():
 	if 'peppuz' not in request.cookies:
-		bot.send_message(
-			config['bot']['telegram']['peppuz'],
-			"%s GET index." % request.remote_addr
-			)
+		ip = parse_ip(request.remote_addr)
+		return jsonify(ip)
+		text = "%s GET index\nFrom %s, %s, %s " \
+			% (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
+		bot.send_message(config['bot']['telegram']['peppuz'],text)
 	return render_template('index.html')
 
 @app.route("/<input>", methods=['GET'])
@@ -417,3 +418,7 @@ def render_dd(form, files):
 	os.chdir('../')
 
 	return redirect('http://localhost/fdd/Danilo-Dolci.html')
+
+
+def parse_ip(ip):
+    return requests.get('http://ip-api.com/json/%s' % ip).json()
