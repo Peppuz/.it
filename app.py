@@ -41,7 +41,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
-	if 'peppuz' not in request.cookie:
+	if 'peppuz' not in request.cookies:
 		bot.send_message(
 			config['bot']['telegram']['peppuz'],
 			"%s GET index." % request.remote_addr
