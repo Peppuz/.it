@@ -41,10 +41,11 @@ app.config['UPLOAD_FOLDER'] = 'uploads/'
 # ROUTES
 @app.route("/", methods=['GET'])
 def index():
-	bot.send_message(
-		config['bot']['telegram']['peppuz'],
-		"%s GET index." % request.remote_addr
-		)
+	if 'peppuz' not in request.cookie:
+		bot.send_message(
+			config['bot']['telegram']['peppuz'],
+			"%s GET index." % request.remote_addr
+			)
 	return render_template('index.html')
 
 @app.route("/<input>", methods=['GET'])
