@@ -1,0 +1,254 @@
+<html lang="it" dir="ltr">
+<head>
+    <title id="head_title"></title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='fdd/master.css')}}">
+    <style media="screen">
+      a {
+        margin: 0 10px 0 10px;
+        text-decoration: none !important;
+        color: white;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .w-10{ width: 15%; }
+      .bg {
+        background-image: url('static/bg.jpeg');
+        background-repeat: repeat;
+      }
+
+      .section {
+        height: 100%;
+        padding-top: 20px;
+      }
+
+      .searchbar {
+        border: solid 1px transparent;
+        border-top: none;
+        border-radius: 10px;
+        border-bottom: none;
+      }
+
+      .searchbar-input {
+        border-radius: 13px;
+        border: transparent solid 1px;
+        margin: 0;
+
+      }
+
+      .form-group{
+        margin-bottom: -8rem;
+      }
+
+      /* Spinning Gear */
+
+      .image {
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 5s linear infinite;
+        -moz-animation: spin 5s linear infinite;
+        animation: spin 5s linear infinite;
+      }
+
+      @-moz-keyframes spin {
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+
+      /* Peppuz Font */
+      @font-face {
+          font-family: "Soria";
+          src: url({{url_for('static', filename='soria-font.ttf')}}) format("truetype");
+      }
+      .customfont {
+          font-family: "Soria", Verdana, Tahoma;
+          font-size: 500%;
+      }
+      .activ{
+        color: #007bff !important;
+      }
+  </style>
+</head>
+
+<body>
+
+  <!-- Global Drawer -->
+  <div id="Drawer" class="drawer noselect">
+    <a id="drawer_home" href="index.html" style = "">Home</a>
+    <a id="drawer_presentazione" href="presentazione.html" style="">Presentazione</a>
+    <a id="drawer_dd" href="Danilo-Dolci.html" style="">Danilo Dolci</a>
+    <a id="drawer_attivita" href="attivita.html" style="">Attività</a>
+    <a id="drawer_citazioni" href="citazioni.html" style="">Citazioni</a>
+    <a id="drawer_contatti" href="contatti.html" style="">Contatti</a>
+  </div>
+
+  <!-- Global NavBar -->
+  <div id="Nav" class="container-fluid" style="background-color:#221E20">
+    <nav class="navbar navbar-expand-md navbar-light ">
+      <a class="navbar-toggler closebtn" style="margin-right:-3.5rem" onclick="openNav()" id="croce">
+        <span  style="color:white; font-size:5rem;" class="noselect"> + </span>
+      </a>
+
+      <a href="index.html" class="mx-auto">
+        <img src="{{url_for('static', filename='fdd/logo.jpg')}}">
+      </a>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <a id="nav_home" class="nav-link" href="index.html" style="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav_presentazione" class="nav-link" href="presentazione.html" style="">Presentazione</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav_dd" class="nav-link " href="Danilo-Dolci.html" style="">Danilo Dolci</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="nav_attivita" class="nav-link " href="attivita.html" style="">Attività</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a id="nav_citazioni" class="nav-link " href="citazioni.html" style="">Citazioni</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav_contatti" class="nav-link " href="contatti.html" style="">Contatti</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav_lock" class="nav-link activ" href="http://localhost:81/fdd/login" style=""><i class="fas fa-lock white" style="padding-top: 5px;;color: #007bff"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <script>
+      function openNav() {
+        var croce = document.getElementById("croce");
+        var drawer = document.getElementById("Drawer");
+        if (drawer.style.width == "50%"){
+          // closing
+          for (var i = 0; i < drawer.children.length; i++)
+            hideChild(drawer.children[i])
+          setTimeout(function () {
+            drawer.style.width = "0";
+            croce.classList = 'navbar-toggler closebtn';
+          }, 100);
+        }
+        else {
+          // opening
+          for (var i = 0; i < drawer.children.length; i++)
+            showChild(drawer.children[i])
+          setTimeout(function () {
+            croce.classList = 'navbar-toggler croce';
+            croce.style.WebkitTransitionDuration = '.3s'
+            croce.style.transitionDuration = '.3s'
+            drawer.style.width = "50%";
+          }, 400);
+        }
+      }
+      function showChild(child){
+          child.classList = 'vivify fadeInLeft'
+      }
+      function hideChild(child){
+          child.classList = 'vivify fadeOutLeft'
+      }
+      function presentazione(){
+        var k = document.getElementById('presentazione');
+        (k.classList == "openDD") ? k.classList = 'closedDD' : k.classList = 'openDD'
+      }
+
+    </script>
+  </div>
+
+  <!-- Global Jumbotron -->
+  <main class="" style="">
+    <div class="jumbotron">
+      <h1 id="jumbotron" class="text-center"/>
+    </div>
+  </main>
+
+  <!-- Upload Inputs -->
+  <section class="m-5 py-2" style="border: 1px solid white; border-radius:10px; background-color:rgba(0,0,0,.1)">
+    <div class="container text-center activ">
+      <div class="col">
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_attivita')}}">Carica su Attivita</a>
+        </div>
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_editoriale')}}">Carica su Editoriale</a>
+        </div>
+        <div class="my-5">
+          <a class="activ" href="{{url_for('fdd_dd')}}">Carica su Danilo Dolci</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+  <!-- Local Script  -->
+  <script type="text/javascript">
+    var currentPosition = 'Area Riservata';
+    var buttons = 1;
+    inHTML('jumbotron', currentPosition);
+    // peppuz.tools
+    function inHTML(a,b){document.getElementById(a).innerHTML = b;}
+    function addButton(){
+      let container = document.getElementById('buttons')
+        let div = document.createElement('div')
+        let input=document.createElement('input')
+
+        div.appendChild(input)
+        container.appendChild(div)
+        div.classList = 'p-1'
+
+        input.type = 'text'
+        input.placeholder = 'Titolo Bottone'
+        input.name = `buttons-${buttons}`
+        input.classList = 'form-control'
+
+        let div1 = document.createElement('div')
+        let input1=document.createElement('input')
+
+        div1.appendChild(input1)
+        container.appendChild(div1)
+        div1.classList = 'p-1'
+        input1.type = 'file'
+        input1.name = `url-${buttons}`
+        classList.classList = 'form-control'
+      buttons += 1
+    }
+  </script>
+
+</body>
+</html>
