@@ -22,6 +22,11 @@ def instagram():
 def telegram():
 	return redirect('https://t.me/peppu_z')
 
+@app.route("/ytdlbot")
+def ytdl():
+	return redirect('https://t.me/yt_downloadbot')
+
+
 @app.route("/gh")
 @app.route("/github")
 def github():
