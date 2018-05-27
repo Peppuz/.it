@@ -31,7 +31,7 @@ app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 def index():
 	if 'peppuz' not in request.cookies and not app.debug:
 		# Processing IP
-		ip = requests.get('http://ip-api.com/json/%s' % ip).json()
+		ip = requests.get('http://ip-api.com/json/%s' % request.remote_addr).json()
 		text = "%s GET index\nFrom %s, %s, %s " % (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
 
 		# DB INSERT
