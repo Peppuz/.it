@@ -37,7 +37,7 @@ def index():
 		# DB INSERT
 		with connection.cursor() as cursor:
 		    # Create a new record
-		    sql = "INSERT INTO `connection` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
+		    sql = "INSERT INTO `connections` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
 		    cursor.execute(sql, (request.remote_addr, ip['city'], ip['countryCode'], str(datetime.now()) ) )
 		connection.commit()
 
