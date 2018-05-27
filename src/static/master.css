@@ -9,6 +9,8 @@
 
 html {
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 body {
@@ -16,6 +18,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  position: absolute;
 }
 
 input {
