@@ -10,9 +10,9 @@ tg_token = config['bot']['telegram']['token']
 app = Flask(__name__)
 bot = telegram.Bot(tg_token)
 
-import src.redirects
-import src.qr
-import src.fdd
+import src.modules.redirects
+import src.modules.qr
+import src.modules.fdd
 
 connection = pymysql.connect(
 		host=config['db']['host'],
