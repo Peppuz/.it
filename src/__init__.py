@@ -1,5 +1,5 @@
-import json, requests, pymysql.cursors
-import telegram
+import json, requests, pymysql.cursors, telegram
+from datetime import datetime
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
 config = json.load(open('config.json'))
@@ -20,25 +20,6 @@ connection = pymysql.connect(
 		password=config['db']['password'],
 		db=config['db']['db'],
 		cursorclass=pymysql.cursors.DictCursor)
-	# EXAMPLE MYSQL
-	# try:
-	#     with connection.cursor() as cursor:
-	#         # Create a new record
-	#         sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
-	#         cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
-	#
-	#     # connection is not autocommit by default. So you must commit to save
-	#     # your changes.
-	#     connection.commit()
-	#
-	#     with connection.cursor() as cursor:
-	#         # Read a single record
-	#         sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
-	#         cursor.execute(sql, ('webmaster@python.org',))
-	#         result = cursor.fetchone()
-	#         print(result)
-	# finally:
-	#     connection.close()
 app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 
 
@@ -46,12 +27,19 @@ app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 @app.route("/", methods=['GET'])
 def index():
 	if 'peppuz' not in request.cookies and not app.debug:
-		# returns a json with all IP info
+		# Processing IP
 		ip = requests.get('http://ip-api.com/json/%s' % ip).json()
 		text = "%s GET index\nFrom %s, %s, %s " \
 			% (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
+
+		# DB INSERT
+	    with connection.cursor() as cursor:
+	        # Create a new record
+	        sql = "INSERT INTO `connection` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
+	        cursor.execute(sql, (request.remote_addr, ip['city'], ip['countryCode'], str(datetime.now()))
+	    connection.commit()
+
+		# Telegram Alert
 		bot.send_message(config['bot']['telegram']['peppuz'],text)
-		# For the bot only send_message is allowed
-		# otherwise other updaters will conflict
-		# and the bot won't respond to any requests
+		
 	return render_template('index.html')
