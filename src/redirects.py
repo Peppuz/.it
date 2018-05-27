@@ -18,12 +18,14 @@ def instagram():
 	return redirect("https://instagram.com/peppuz_")
 
 @app.route("/tg")
+@app.route("/telegram")
 def telegram():
 	return redirect('https://t.me/peppu_z')
 
-@app.route("/2stoned")
-def youtube2():
-	return redirect('https://ddg.gg')
+@app.route("/gh")
+@app.route("/github")
+def github():
+	return redirect('https://github.com/Peppuz')
 
 @app.route('/webmail')
 def aruba_mail():
@@ -39,6 +41,8 @@ def demcar():
 def twitter():
 	return redirect('https://twitter.com/zuppep')
 
+@app.route("/soundcloud")
+@app.route("/sc")
 @app.route("/tracks")
 def soundcloud():
 	return redirect('https://soundcloud.com/peppu_z/tracks')
