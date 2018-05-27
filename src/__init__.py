@@ -29,17 +29,16 @@ def index():
 	if 'peppuz' not in request.cookies and not app.debug:
 		# Processing IP
 		ip = requests.get('http://ip-api.com/json/%s' % ip).json()
-		text = "%s GET index\nFrom %s, %s, %s " \
-			% (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
+		text = "%s GET index\nFrom %s, %s, %s " % (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
 
 		# DB INSERT
-	    with connection.cursor() as cursor:
-	        # Create a new record
-	        sql = "INSERT INTO `connection` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
-	        cursor.execute(sql, (request.remote_addr, ip['city'], ip['countryCode'], str(datetime.now()))
-	    connection.commit()
+		with connection.cursor() as cursor:
+		    # Create a new record
+		    sql = "INSERT INTO `connection` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
+		    cursor.execute(sql, (request.remote_addr, ip['city'], ip['countryCode'], str(datetime.now()) ) )
+		connection.commit()
 
 		# Telegram Alert
 		bot.send_message(config['bot']['telegram']['peppuz'],text)
-		
+
 	return render_template('index.html')
