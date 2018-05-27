@@ -2,7 +2,7 @@ import json, requests, pymysql.cursors
 import telegram
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-config = json.load(open('../config.json'))
+config = json.load(open('config.json'))
 tg_token = config['bot']['telegram']['token']
 
 
