@@ -2,7 +2,7 @@ import json, requests, pymysql.cursors
 import telegram
 from flask import Flask, redirect, url_for, request, render_template, jsonify
 
-config = json.load(open('config.json'))
+config = json.load(open('../config.json'))
 tg_token = config['bot']['telegram']['token']
 
 
@@ -14,12 +14,12 @@ import src.modules.redirects
 import src.modules.qr
 
 import src.modules.fdd
-# connection = pymysql.connect(
-	# 	host='localhost',
-	# 	user='root',
-	# 	password='root',
-	# 	db='',
-	# 	cursorclass=pymysql.cursors.DictCursor)
+connection = pymysql.connect(
+		host=config['db']['host'],
+		user=config['db']['user'],
+		password=config['db']['password'],
+		db=config['db']['db'],
+		cursorclass=pymysql.cursors.DictCursor)
 	# EXAMPLE MYSQL
 	# try:
 	#     with connection.cursor() as cursor:
