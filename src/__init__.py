@@ -10,16 +10,19 @@ tg_token = config['bot']['telegram']['token']
 app = Flask(__name__)
 bot = telegram.Bot(tg_token)
 
+# Modules
 import src.redirects
 import src.qr
 import src.fdd
 
-connection = pymysql.connect(
-		host=config['db']['host'],
-		user=config['db']['user'],
-		password=config['db']['password'],
-		db=config['db']['db'],
-		cursorclass=pymysql.cursors.DictCursor)
+# Production connect
+if not app.debug:
+	connection = pymysql.connect(
+			host=config['db']['host'],
+			user=config['db']['user'],
+			password=config['db']['password'],
+			db=config['db']['db'],
+			cursorclass=pymysql.cursors.DictCursor)
 app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 
 

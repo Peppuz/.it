@@ -47,18 +47,13 @@ function changeText(where, val){
 function showPickers(){
   let tap = document.getElementById('tap')
   let theme = document.getElementById('theme-div')
-
-  if (tap.classList.contains('active')) {
-    tap.classList.remove("active")
-    tap.classList.add("hidden")
-
+  if (tap.innerHTML == 'tap me ! &gt;') {
+    tap.innerHTML = 'tap to close ! >';
     theme.classList.add("active")
     theme.classList.remove("hidden")
   }
   else {
-    tap.classList.add("active")
-    tap.classList.remove("hidden")
-
+    tap.innerHTML = 'tap me ! >';
     theme.classList.remove("active")
     theme.classList.add("hidden")
   }
