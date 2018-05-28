@@ -1,5 +1,5 @@
 from src import app
-from flask import redirect, render_template, request
+from flask import redirect, render_template, request, send_from_directory
 import qrcode
 
 # QR Generator
@@ -29,7 +29,7 @@ def qr(data=None):
 	if not data:
 		render_template('qr.html')
 	if "/" in data:
-		return render_template('qr.html', error="Slashes '/' are not allowed")
+		return render_template('qr.html', error="Error: Slashes '/' are not allowed")
 
 
 	qr = qr = qrcode.QRCode(
@@ -43,4 +43,4 @@ def qr(data=None):
 	img.save(open("src/static/qr/%s.png"%data,'wb'))
 
 	img = "qr/%s.png" % data
-	return render_template('qr.html', data=data, img=img)
+	return send_from_directory('static', img)

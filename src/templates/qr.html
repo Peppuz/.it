@@ -58,14 +58,14 @@
       </div>
 
     {% if not img or error %}
-        <a href="{{url_for('index')}}">
+        <a href="{{url_for('qrgen')}}">
           <h1 class="color">QR Gen</h1>
         </a>
         <form action="#" method="POST" class="m-3">
           <input class="searchbar col-6" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
           <div class="mt-3">
               {% if error %}
-                <p>{{ error }}</p>
+                <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
               {% endif %}
               <button type="submit" name="button" class="qrcode"><i class="fa fa-qrcode fa-3x"></i></button>
           </div>
