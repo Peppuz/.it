@@ -27,7 +27,10 @@ def qrgen():
 @app.route('/qr/<data>')
 def qr(data=None):
 	if not data:
-		render_template('index.html')
+		render_template('qr.html')
+	if "/" in data:
+		return render_template('qr.html', error="Slashes '/' are not allowed")
+
 
 	qr = qr = qrcode.QRCode(
 	    version=1,
@@ -36,8 +39,8 @@ def qr(data=None):
 	    border=4)
 	qr.add_data(data)
 	qr.make(fit=True)
-	img = qr.make_image(back_color="transparent")
-	img.save(open("static/qr/%s.png"%data,'wb'))
+	img = qr.make_image(fill_color="black", back_color="transparent")
+	img.save(open("src/static/qr/%s.png"%data,'wb'))
 
 	img = "qr/%s.png" % data
 	return render_template('qr.html', data=data, img=img)
