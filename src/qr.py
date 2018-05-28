@@ -7,6 +7,9 @@ import qrcode
 def qrgen():
 	if request.method == 'POST' and request.form:
 		data = request.form['qr']
+		if "/" in data:
+			return render_template('qr.html', error="Slashes '/' are not allowed")
+
 		qr = qr = qrcode.QRCode(
 		    version=1,
 		    error_correction=qrcode.constants.ERROR_CORRECT_L,
