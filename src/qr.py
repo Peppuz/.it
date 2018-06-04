@@ -1,6 +1,6 @@
 from src import app
 from flask import redirect, render_template, request, send_from_directory, jsonify
-import qrcode, urllib.parse
+import qrcode, urllib
 
 # QR Generator
 @app.route('/qr', methods=['POST', 'GET'])
@@ -16,7 +16,7 @@ def qrgen():
 		qr.add_data(data)
 		qr.make(fit=True)
 
-		filename = urllib.parse.quote_plus(data)
+		filename = urllib.quote_plus(data)
 
 		img = qr.make_image(fill_color="black", back_color="transparent")
 		img.save(open("src/static/qr/%s.png" % filename,'wb'))
