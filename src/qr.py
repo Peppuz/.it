@@ -6,7 +6,22 @@ import qrcode, urllib
 @app.route('/qr', methods=['POST', 'GET'])
 def qrgen():
 	if request.method == 'POST' and request.form:
-		data = request.form['qr']
+		if not 'qr' in request.form:
+			data = "BEGIN:VCARD \nVERSION:2.1\n"
+			if request.form['name'] and request.form['surname']:
+				data += "N:%s;%s\n" % (request.form['surname'], request.form['name'])
+			if request.form['email']:
+				data += "EMAIL:%s\n" % request.form['email']
+			if request.form['mobile']:
+				data += "TEL;CELL;PREF:%s\n" % request.form['mobile']
+			if request.form['address']:
+				data += "ADR;HOME:;;%s;%s;%s;%s\n" \
+				% (request.form['address'], request.form['city'], request.form['cap'], request.form['nation'])
+			if request.form['website']:
+				data += "URL:%s\n" % request.form['website']
+			data += "END:VCARD"
+		else:
+			data = request.form['qr']
 
 		qr = qrcode.QRCode(
 		    version=1,

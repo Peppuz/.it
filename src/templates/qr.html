@@ -1,5 +1,4 @@
 <html lang="it" dir="ltr">
-
   <head>
     <title>QR Generator | Peppuz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,65 +23,170 @@
       <div class="container d-flex justify-content-center" style="color:inherit">
         <div class="row">
           <div class="mx-auto">
-            <p id="tap" class="tap-me float-left pt-2 active">tap me ! ></p>
-            <a onclick="showPickers()" class="">
-              <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='pics/gear_white.png')}}"  style="width:100px; height:100px">
-            </a>
-            <a class="float-right" style="margin-left:-1rem" href="{{url_for('index')}}">
+            <a class="float-left" style="margin-right:-1rem" href="{{url_for('index')}}">
               <h1 class="pt-2" >Peppuz</h1>
             </a>
+            <a onclick="showPickers()" class="float-">
+              <img class="img-fluid image p-4 mx-0" src="{{url_for('static', filename='pics/gear_white.png')}}"  style="width:100px; height:100px">
+            </a>
+            <a class="float-right" style="margin-left:-1rem" href="{{url_for('qrgen')}}">
+              <h1 style="padding-top:0.6rem" class="">QR GEN</h1>
+            </a>
           </div>
+
           <div id="theme-div" class="hidden" >
             <div class="text-center">
               <p>Background HSL</p>
               <input class="" style="margin:2.25rem" id="bg-picker" oninput="changeTheme(this.value)" onchange="changeTheme(this.value)" type="range" min="0" max="360" value="#ff0000">
-              <div class="">
-                  <button type="button" class="" name="button" onclick=""> Black </button>
-              </div>
             </div>
-
             <div class="container mt-1 p-3 text-center">
               <p>Text RGB</p>
               <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-r" onchange="changeText('r', this.value)" value="#ff0000">
               <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-g" onchange="changeText('g', this.value)" value="#ff0000">
               <input class="col p-3 w-25" type="range" min="0" max="255" id="text-picker-b" onchange="changeText('b', this.value)" value="#ff0000">
             </div>
-
           </div>
-
-          <!-- <input class="hidden" id="text-picker" oninput="changeText(this.value)" onchange="changeText(this.value)" type="range" name="slideRed" min="0" max="360"> -->
-
         </div>
-
-
       </div>
 
     {% if not img or error %}
-        <a href="{{url_for('qrgen')}}">
-          <h1 class="color">QR Gen</h1>
-        </a>
-        <form action="#" method="POST" class="m-3">
-          <input class="searchbar col-6" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
+
+        <form id="form" action="#" method="POST" class="m-3">
+          <script type="text/javascript">
+            let form = document.getElementById('form')
+
+            function url() {
+              let form = document.getElementById('form')
+              console.log("Hi");
+              form.innerHTML = ""
+              options_gen()
+              input = document.createElement('input')
+              input.classList = 'searchbar col-xs-8 col-md-6 onkeyup=""'
+              input.style.height = "3rem"
+              input.type = "text"
+              input.name = "qr"
+              input.placeholder = " > Type whatever string"
+
+              let div = document.createElement('div')
+              let sub = document.createElement('button')
+              sub.type = "submit"
+              sub.name = "button"
+              sub.classList = "qrcode"
+              sub.innerHTML = '<i class="fa fa-qrcode fa-3x"></i>'
+              div.classList = 'mt-3'
+              div.append(sub)
+              form.append(input, div)
+            }
+
+            function vcard(){
+              let form = document.getElementById('form')
+              console.log("Hi");
+              form.innerHTML = ""
+              options_gen()
+
+
+              let div = document.createElement('div')
+              div.classList = "container mx-auto"
+
+              function get_input(name) {
+                let something = document.createElement('input')
+                something.classList = 'searchbar row col-xs-8 col-md-6 mb-1 mx-auto'
+                something.style.height = "3rem"
+                something.type = "text"
+
+                something.name = name
+                something.placeholder =
+                    " > " + name.charAt(0).toUpperCase() + name.slice(1);
+
+                return something
+              }
+
+              let nome = get_input("name")
+              let cognome = get_input("surname")
+              let numero = get_input("mobile")
+              let email = get_input("email")
+              let sito = get_input("website")
+              let indirizzo = get_input("address")
+              let citta = get_input("city")
+              let nazione = get_input("nation")
+              let cap = get_input("cap")
+              let website = get_input("website")
+
+              let sub = document.createElement('div')
+              sub.innerHTML = '<button type="submit" class="qrcode"><i class="fa fa-qrcode fa-3x"></i></button>'
+
+
+              div.append(
+                nome,
+                cognome,
+                numero,
+                email,
+                indirizzo,
+                citta,
+                nazione,
+                cap,
+                website,
+                sub
+              )
+              form.append(div)
+
+
+
+              // # ADR;HOME:;;residence_address;residence_city;residence_region;residence_cap;residence_country
+          		// # ADR:;;office_address;office_city;office_region;office_cap;office_country
+          		// # TEL;HOME:phone_home
+          		// # TEL;WORK:phone_office
+          		// # TEL;FAX:fax
+          		// # TEL;CELL;PREF:phone_mobile
+          		// # EMAIL:email
+          		// # URL:website
+
+
+            }
+
+            function options_gen() {
+              let div = document.createElement('div')
+              div.classList = 'container row justify-content-center mx-auto'
+              div.innerHTML = '<button class="qr-option btn mr-1" type="button" onclick="url()" name="button"> <i class="fa fa-globe"></i> url</button> <button class="qr-option btn ml-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>'
+              form.append(div)
+            }
+          </script>
+          <div class="container row justify-content-center mx-auto">
+            <button class="qr-option btn mr-1" type="button" onclick="url()" name="button"> <i class="fa fa-globe"></i> url</button>
+            <button class="qr-option btn ml-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>
+          </div>
+          <input class="searchbar col-xs-8 col-md-6" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
           <div class="mt-3">
               {% if error %}
                 <p><i class="fas fa-exclamation-circle"></i> {{ error }}</p>
-              {% endif %}
+                {% endif %}
               <button type="submit" name="button" class="qrcode"><i class="fa fa-qrcode fa-3x"></i></button>
           </div>
         </form>
+
     {% else %}
-      <h1 class="center ">QR Gen </h1>
+
+
+
       <div class="center">
         <div class="container mx-auto">
           <a href="{{url_for('qrgen')}}" class="mx-auto btn mt-3"><i class="fa fa-qrcode"> </i> Another One!</a>
         </div>
         <img src="{{url_for('static', filename=img)}}">
         <p style="color:black">data: {{data}}</p>
-
-
-
       </div>
+
     {% endif %}
+
+    <i class="fa fa-angle-down mt-3"></i>
+    <div class="container p-5">
+      <h4 class="text-left"> <i class="fa fa-key"></i> Privacy is the key </h4>
+      <p class="container text-left"> We dont collect any of the information submited for Privacy reasons.
+        <br> We strongly believe that user data should not feed the giants that monopolized the market of ads slowly destroying the world by capitalizing.
+        <br> Our views about ads market are clear, it cannot be centralized. Decentralization of ads gives automatically better quality ads because of the location that we talking about.
+        <br> For more thoughts <a href="#" style="text-decoration: underline;">click here</a>
+      </p>
+    </div>
     </div>
   </body>
 </html>

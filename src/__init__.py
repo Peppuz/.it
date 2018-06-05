@@ -10,21 +10,23 @@ tg_token = config['bot']['telegram']['token']
 app = Flask(__name__)
 bot = telegram.Bot(tg_token)
 
-# Modules
-import src.redirects
-import src.qr
-import src.fdd
 
 # Production connect
-if not app.debug:
-	connection = pymysql.connect(
-			host=config['db']['host'],
-			user=config['db']['user'],
-			password=config['db']['password'],
-			db=config['db']['db'],
-			cursorclass=pymysql.cursors.DictCursor)
+host = '80.211.177.35' if app.debug else config['db']['host']
+db = pymysql.connect(
+		host=host,
+		user=config['db']['user'],
+		password=config['db']['password'],
+		db=config['db']['db'],
+		cursorclass=pymysql.cursors.DictCursor)
 app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 
+
+# Modules
+import src.dbapi
+import src.qr
+import src.fdd
+import src.redirects
 
 # ROUTES
 @app.route("/", methods=['GET'])
@@ -35,11 +37,11 @@ def index():
 		text = "%s GET index\nFrom %s, %s, %s " % (request.remote_addr, ip['city'], ip['regionName'], ip['countryCode'])
 
 		# DB INSERT
-		with connection.cursor() as cursor:
+		with db.cursor() as cursor:
 		    # Create a new record
 		    sql = "INSERT INTO `connections` (`ip`, `citta`, `stato`, `date`) VALUES (%s, %s, %s, %s)"
 		    cursor.execute(sql, (request.remote_addr, ip['city'], ip['countryCode'], str(datetime.now()) ) )
-		connection.commit()
+		db.commit()
 
 		# Telegram Alert
 		bot.send_message(config['bot']['telegram']['peppuz'],text)

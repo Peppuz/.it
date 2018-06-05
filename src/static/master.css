@@ -52,6 +52,14 @@ h1, h2, h3, h4, h5, h6, a, p {
   border: none;
 }
 
+.qr-option{
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+  border-radius: 10px;
+  border-bottom-left-radius: 0 ;
+  border-bottom-right-radius: 0;
+}
+
 
 nav a {
   color: var(--main-color);
