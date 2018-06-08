@@ -1,49 +1,115 @@
-function setCookie(name,value) {
+/*
+ * pz_tools.js
+ *   A DOM using cookies as storage for theme settings and colors
+ *   List of functions:
+ *    ~ setCookie: recieves the identifier and the new value, than stores the cookie
+ *    ~ getCookie: returns the value from recieved identifier
+ *    ~ onLoadTheme: renders all colors according on CSS vars
+ *    ~ changeTheme: recieves an integer, and loads new theme
+ *    ~ changeText &: recieves
+ * Peppuz (me@peppuz.it) - WTF Licence
+ */
+
+function setCookie(id,value) {
     var expires = "";
     var date = new Date();
     date.setTime(date.getTime() + (30*24*60*60*1000));
     expires = "; expires=" + date.toUTCString();
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = id + "=" + (value || "")  + expires + "; path=/";
 }
-function getCookie(name) {
-    var nameEQ = name + "=";
+
+function getCookie(id) {
+    var idEQ = id + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        if (c.indexOf(idEQ) == 0) return c.substring(idEQ.length,c.length);
     }
     return null;
 }
+
 function onLoadTheme(){
+  let rt = getCookie('text-r')
+  let gt = getCookie('text-g')
+  let bt = getCookie('text-b')
+  let rbg = getCookie('bg-r')
+  let gbg = getCookie('bg-g')
+  let bbg = getCookie('bg-b')
+
+  let color = `${rt},${gt},${bt}`
+  let bg = `${rbg},${gbg},${bbg}`
   let element  = document.getElementById('main')
-  let bg = getCookie('bg')
-  if (bg == null)
-    bg = '0'
-  let hue = `hsl(${bg}, 100%, 50%)`
-  console.log(hue);
-  element.style.setProperty("--main-bg-color", hue);
 
-  let r = getCookie('text-r')
-  let g = getCookie('text-g')
-  let b = getCookie('text-b')
-  let color = `rgb(${r},${g},${b})`
-  if (r == null)
-    color = 'rgb(0,0,0)'
-  console.log(color);
-  element.style.setProperty("--main-color", color);
-
+  element.style.setProperty("--main-bg-color", `rgb(${bg})`);
+  element.style.setProperty("--main-color", `rgb(${color})`);
 }
 
-function changeTheme(val){
-  setCookie("bg",val)
-  onLoadTheme()
-}
-function changeText(where, val){
-  let element = document.getElementById('main')
+function setText(where, val){
   setCookie(`text-${where}`, val)
   onLoadTheme()
 }
+
+function setBg(id,val) {
+  setCookie(`bg-${id}`, val)
+  onLoadTheme()
+}
+
+function setTheme(val){
+  let rt= ""
+  let gt= ""
+  let bt= ""
+  let rbg= ""
+  let gbg= ""
+  let bbg= ""
+  switch (val) { // text & bg
+    case 1: // red & black
+      rt= "255"
+      gt= "0"
+      bt= "0"
+      rbg= "0"
+      gbg= "0"
+      bbg= "0"
+      break;
+    case 2: // black & red
+      rt= "0"
+      gt= "0"
+      bt= "0"
+      rbg= "255"
+      gbg= "0"
+      bbg= "0"
+      break;
+    case 3: // yellow & blue
+      rt= "255"
+      gt= "255"
+      bt= "0"
+      rbg= "0"
+      gbg= "0"
+      bbg= "255"
+      break;
+    case 4: // black & green
+      rt= "0"
+      gt= "0"
+      bt= "0"
+      rbg= "0"
+      gbg= "255"
+      bbg= "0"
+      break;
+
+    default:
+      return console.error("default call on setTheme");
+  }
+
+
+  setCookie("text-r", rt)
+  setCookie("text-g", gt)
+  setCookie("text-b", bt)
+  setCookie("bg-r", rbg)
+  setCookie("bg-g", gbg)
+  setCookie("bg-b", bbg)
+  onLoadTheme()
+}
+
 function showPickers(){
   let tap = document.getElementById('tap')
   let theme = document.getElementById('theme-div')
