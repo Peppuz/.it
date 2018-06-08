@@ -95,7 +95,14 @@ function setTheme(val){
       gbg= "255"
       bbg= "0"
       break;
-
+    case 5: // red & blueish
+      rt= "255"
+      gt= "0"
+      bt= "0"
+      rbg= "1"
+      gbg= "53"
+      bbg= "125"
+      break;
     default:
       return console.error("default call on setTheme");
   }
