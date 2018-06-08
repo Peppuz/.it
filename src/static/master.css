@@ -269,3 +269,13 @@ hr{
 .hidden{
   display: none;
 }
+.metaprop{
+  border: solid var(--main-color) 1px;
+  border-radius: 15px;
+  border-style: dashed;
+  border-spacing: 0.5rem
+
+}
+
+.metaprop-btn{
+}
