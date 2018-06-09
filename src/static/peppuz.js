@@ -29,6 +29,22 @@ function getCookie(id) {
     return null;
 }
 
+function checkCookies() {
+  let c = [
+    getCookie('text-r'),
+    getCookie('text-g'),
+    getCookie('text-b'),
+    getCookie('bg-r'),
+    getCookie('bg-g'),
+    getCookie('bg-b'),
+  ]
+  if (c.length < 6)
+    return setTheme(5)
+
+  return onLoadTheme()
+
+}
+
 function onLoadTheme(){
   let rt = getCookie('text-r')
   let gt = getCookie('text-g')
@@ -124,6 +140,7 @@ function showPickers(){
     tap.innerHTML = 'tap to close ! >';
     theme.classList.add("active")
     theme.classList.remove("hidden")
+    checkCookies()
   }
   else {
     tap.innerHTML = 'tap me ! >';
