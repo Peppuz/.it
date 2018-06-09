@@ -38,8 +38,9 @@ function checkCookies() {
     getCookie('bg-g'),
     getCookie('bg-b'),
   ]
-  if (c.length < 6)
-    return setTheme(5)
+  for (var cookie in c )
+    if (!c[cookie])
+      return setTheme(5)
 
   return onLoadTheme()
 
