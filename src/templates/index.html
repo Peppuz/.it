@@ -89,9 +89,9 @@
 
           <h4 class="text-center text-md-left "><span id='text'></span>&#95;</h4>
 
-        <a class="" href="http://telegra.ph/Quanto-siamo-falsi-06-08-2">
+        <!-- <a class="" href="http://telegra.ph/Quanto-siamo-falsi-06-08-2">
           <h4 class="m-4 text-center text-md-left " id="messenger"></h4>
-        </a>
+        </a> -->
       </div>
     </div>
 
@@ -102,7 +102,7 @@
         <a class="linch text-center" id="Proj" href="#">Projects</a>
       </div>
       <div class="col p-2">
-        <a class=" linch text-center" href="{{url_for('qrgen')}}">QR Gen</a>
+        <a class=" linch text-center" href="{{url_for('qr')}}">QR Gen</a>
       </div>
       <div class="col p-2">
         <a class="linch text-center" id="Contacts" href="#">Contacts</a>
@@ -209,150 +209,155 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-  // function([string1, string2],target id,[color1,color2])
-   consoleText(['Mta-', 'Meta-Propaganda', 'Made with Love', 'Made for Progress. 💪'], 'text',['tomato','rebeccapurple','lightblue']);
+     consoleText([
+       'NEWS # OrariSTP 4 in progettazione',
+       'STATUS # YT download bot: ✅ Online',
+       'STATUS # OrariSTP 3: ✅ Online',
+     ],
+     'text',
+     ['red']);
 
-  function consoleText(words, id, colors) {
-    if (colors === undefined) colors = ['#fff'];
-    var visible = true;
-    var con = document.getElementById('console');
-    var letterCount = 1;
-    var x = 1;
-    var waiting = false;
-    var target = document.getElementById(id)
-    target.setAttribute('style', 'color:' + colors[0])
-    window.setInterval(function() {
+    function consoleText(words, id, colors) {
+      if (colors === undefined) colors = ['#fff'];
+      var visible = true;
+      var con = document.getElementById('console');
+      var letterCount = 1;
+      var x = 1;
+      var waiting = false;
+      var target = document.getElementById(id)
+      target.setAttribute('style', 'color:' + colors[0])
+      window.setInterval(function() {
 
-      if (letterCount === 0 && waiting === false) {
-        waiting = true;
-        target.innerHTML = words[0].substring(0, letterCount)
-        window.setTimeout(function() {
-          var usedColor = colors.shift();
-          colors.push(usedColor);
-          var usedWord = words.shift();
-          words.push(usedWord);
-          x = 1;
-          target.setAttribute('style', 'color:' + colors[0])
+        if (letterCount === 0 && waiting === false) {
+          waiting = true;
+          target.innerHTML = words[0].substring(0, letterCount)
+          window.setTimeout(function() {
+            var usedColor = colors.shift();
+            colors.push(usedColor);
+            var usedWord = words.shift();
+            words.push(usedWord);
+            x = 1;
+            target.setAttribute('style', 'color:' + colors[0])
+            letterCount += x;
+            waiting = false;
+          }, 1000)
+        } else if (letterCount === words[0].length + 1 && waiting === false) {
+          waiting = true;
+          window.setTimeout(function() {
+            x = -1;
+            letterCount += x;
+            waiting = false;
+          }, 1000)
+        } else if (waiting === false) {
+          target.innerHTML = words[0].substring(0, letterCount)
           letterCount += x;
-          waiting = false;
-        }, 1000)
-      } else if (letterCount === words[0].length + 1 && waiting === false) {
-        waiting = true;
-        window.setTimeout(function() {
-          x = -1;
-          letterCount += x;
-          waiting = false;
-        }, 1000)
-      } else if (waiting === false) {
-        target.innerHTML = words[0].substring(0, letterCount)
-        letterCount += x;
-      }
-    }, 120)
-    window.setInterval(function() {
-      if (visible === true) {
-        con.className = 'console-underscore hidden'
-        visible = false;
+        }
+      }, 120)
+      window.setInterval(function() {
+        if (visible === true) {
+          con.className = 'console-underscore hidden'
+          visible = false;
 
-      } else {
-        con.className = 'console-underscore'
+        } else {
+          con.className = 'console-underscore'
 
-        visible = true;
-      }
-    }, 400)
-  }
+          visible = true;
+        }
+      }, 400)
+    }
 
-  var Messenger = function(el){
-    'use strict';
-    var m = this;
+    var Messenger = function(el){
+      'use strict';
+      var m = this;
 
-    m.init = function(){
-      m.codeletters = "&#*+%?£@§$";
-      m.message = 0;
-      m.current_length = 0;
-      m.fadeBuffer = false;
-      m.messages = [
-        'Quanto siamo falsi?',
-        'No? Forse ti interessa',
-        'O forse no..',
-        'Cliccami'
-      ];
+      m.init = function(){
+        m.codeletters = "&#*+%?£@§$";
+        m.message = 0;
+        m.current_length = 0;
+        m.fadeBuffer = false;
+        m.messages = [
+          'Quanto siamo falsi?',
+          'No? Forse ti interessa',
+          'O forse no..',
+          'Cliccami'
+        ];
 
-      setTimeout(m.animateIn, 250);
-    };
+        setTimeout(m.animateIn, 250);
+      };
 
-    m.generateRandomString = function(length){
-      var random_text = '';
-      while(random_text.length < length){
-        random_text += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
-      }
-
-      return random_text;
-    };
-
-    m.animateIn = function(){
-      if(m.current_length < m.messages[m.message].length){
-        m.current_length = m.current_length + 2;
-        if(m.current_length > m.messages[m.message].length) {
-          m.current_length = m.messages[m.message].length;
+      m.generateRandomString = function(length){
+        var random_text = '';
+        while(random_text.length < length){
+          random_text += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
         }
 
-        var message = m.generateRandomString(m.current_length);
+        return random_text;
+      };
+
+      m.animateIn = function(){
+        if(m.current_length < m.messages[m.message].length){
+          m.current_length = m.current_length + 2;
+          if(m.current_length > m.messages[m.message].length) {
+            m.current_length = m.messages[m.message].length;
+          }
+
+          var message = m.generateRandomString(m.current_length);
+          $(el).html(message);
+
+          setTimeout(m.animateIn, 20);
+        } else {
+          setTimeout(m.animateFadeBuffer, 20);
+        }
+      };
+
+      m.animateFadeBuffer = function(){
+        if(m.fadeBuffer === false){
+          m.fadeBuffer = [];
+          for(var i = 0; i < m.messages[m.message].length; i++){
+            m.fadeBuffer.push({c: (Math.floor(Math.random()*12))+1, l: m.messages[m.message].charAt(i)});
+          }
+        }
+
+        var do_cycles = false;
+        var message = '';
+
+        for(var i = 0; i < m.fadeBuffer.length; i++){
+          var fader = m.fadeBuffer[i];
+          if(fader.c > 0){
+            do_cycles = true;
+            fader.c--;
+            message += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+          } else {
+            message += fader.l;
+          }
+        }
+
         $(el).html(message);
 
-        setTimeout(m.animateIn, 20);
-      } else {
-        setTimeout(m.animateFadeBuffer, 20);
-      }
-    };
-
-    m.animateFadeBuffer = function(){
-      if(m.fadeBuffer === false){
-        m.fadeBuffer = [];
-        for(var i = 0; i < m.messages[m.message].length; i++){
-          m.fadeBuffer.push({c: (Math.floor(Math.random()*12))+1, l: m.messages[m.message].charAt(i)});
-        }
-      }
-
-      var do_cycles = false;
-      var message = '';
-
-      for(var i = 0; i < m.fadeBuffer.length; i++){
-        var fader = m.fadeBuffer[i];
-        if(fader.c > 0){
-          do_cycles = true;
-          fader.c--;
-          message += m.codeletters.charAt(Math.floor(Math.random()*m.codeletters.length));
+        if(do_cycles === true){
+          setTimeout(m.animateFadeBuffer, 50);
         } else {
-          message += fader.l;
+          setTimeout(m.cycleText, 2000);
         }
-      }
+      };
 
-      $(el).html(message);
+      m.cycleText = function(){
+        m.message = m.message + 1;
+        if(m.message >= m.messages.length){
+          m.message = 0;
+        }
 
-      if(do_cycles === true){
-        setTimeout(m.animateFadeBuffer, 50);
-      } else {
-        setTimeout(m.cycleText, 2000);
-      }
-    };
+        m.current_length = 0;
+        m.fadeBuffer = false;
+        $(el).html('');
 
-    m.cycleText = function(){
-      m.message = m.message + 1;
-      if(m.message >= m.messages.length){
-        m.message = 0;
-      }
+        setTimeout(m.animateIn, 200);
+      };
 
-      m.current_length = 0;
-      m.fadeBuffer = false;
-      $(el).html('');
-
-      setTimeout(m.animateIn, 200);
-    };
-
-    m.init();
-  }
-  console.clear();
-  var messenger = new Messenger($('#messenger'));
+      m.init();
+    }
+    console.clear();
+    var messenger = new Messenger($('#messenger'));
   </script>
 
   <style>

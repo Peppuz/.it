@@ -4,7 +4,7 @@ import qrcode, urllib
 
 # QR Generator
 @app.route('/qr', methods=['POST', 'GET'])
-def qrgen():
+def qr():
 	if request.method == 'POST' and request.form:
 		if not 'qr' in request.form:
 			data = "BEGIN:VCARD \nVERSION:2.1\n"
@@ -39,4 +39,3 @@ def qrgen():
 
 		return render_template('qr.html', data=data, img=img)
 	return render_template('qr.html')
-
