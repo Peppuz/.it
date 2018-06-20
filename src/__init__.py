@@ -44,6 +44,7 @@ def index():
 		db.commit()
 
 		# Telegram Alert
-		bot.send_message(config['bot']['telegram']['peppuz'],text)
+		if ip['countryCode'] == 'IT':
+			bot.send_message(config['bot']['telegram']['peppuz'],text)
 
 	return render_template('index.html')
