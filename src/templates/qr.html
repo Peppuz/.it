@@ -55,17 +55,32 @@
           <script type="text/javascript">
             let form = document.getElementById('form')
 
+            function get_input(name) {
+              let something = document.createElement('input')
+              something.classList = 'searchbar row col-xs-8 col-md-6 mb-1 mx-auto'
+              something.style.height = "3rem"
+              something.type = "text"
+              something.name = name
+              something.placeholder =
+                  " > " + name.charAt(0).toUpperCase() + name.slice(1);
+              return something
+            }
+
             function url() {
               let form = document.getElementById('form')
-              console.log("Hi");
               form.innerHTML = ""
               options_gen()
-              input = document.createElement('input')
+              let input = document.createElement('input')
               input.classList = 'searchbar col-xs-8 col-md-6 onkeyup=""'
               input.style.height = "3rem"
               input.type = "text"
               input.name = "qr"
               input.placeholder = " > Type whatever string"
+
+              let type_selected = document.createElement('input')
+              type_selected.type = 'text'
+              type_selected.innerHTML = 'url'
+              type_selected.style.diplay = 'none'
 
               let div = document.createElement('div')
               let sub = document.createElement('button')
@@ -84,22 +99,8 @@
               form.innerHTML = ""
               options_gen()
 
-
               let div = document.createElement('div')
               div.classList = "container mx-auto"
-
-              function get_input(name) {
-                let something = document.createElement('input')
-                something.classList = 'searchbar row col-xs-8 col-md-6 mb-1 mx-auto'
-                something.style.height = "3rem"
-                something.type = "text"
-
-                something.name = name
-                something.placeholder =
-                    " > " + name.charAt(0).toUpperCase() + name.slice(1);
-
-                return something
-              }
 
               let nome = get_input("name")
               let cognome = get_input("surname")
@@ -112,9 +113,13 @@
               let cap = get_input("cap")
               let website = get_input("website")
 
+              let type_selected = document.createElement('input')
+              type_selected.type = 'text'
+              type_selected.innerHTML = 'vcard'
+              type_selected.style.diplay = 'none'
+
               let sub = document.createElement('div')
               sub.innerHTML = '<button type="submit" class="qrcode"><i class="fa fa-qrcode fa-3x"></i></button>'
-
 
               div.append(
                 nome,
@@ -129,31 +134,53 @@
                 sub
               )
               form.append(div)
+            }
 
+            function wifi(){
+              let form = document.getElementById('form')
+              form.innerHTML = ""
+              options_gen()
 
+              let div = document.createElement('div')
+              div.classList = "container mx-auto"
 
-              // # ADR;HOME:;;residence_address;residence_city;residence_region;residence_cap;residence_country
-          		// # ADR:;;office_address;office_city;office_region;office_cap;office_country
-          		// # TEL;HOME:phone_home
-          		// # TEL;WORK:phone_office
-          		// # TEL;FAX:fax
-          		// # TEL;CELL;PREF:phone_mobile
-          		// # EMAIL:email
-          		// # URL:website
+              let ssid = get_input("Wifi Name [case sensitive]")
+              let password = get_input("Password")
+              let password_type = document.createElement('select')
+              password_type.name = 'password_type'
+              password_type.classList = 'mx-auto my-1'
+              password_type.innerHTML = ''
+              // TODO: COmplete and add selectables  
 
+              let type_selected = document.createElement('input')
+              type_selected.type = 'text'
+              type_selected.innerHTML = 'url'
+              type_selected.style.diplay = 'none'
 
+              let sub = document.createElement('button')
+              sub.type = "submit"
+              sub.name = "button"
+              sub.classList = "qrcode"
+              sub.innerHTML = '<i class="fa fa-qrcode fa-3x"></i>'
+
+              div.append(ssid, password_type, password, sub)
+              form.append(div)
             }
 
             function options_gen() {
               let div = document.createElement('div')
               div.classList = 'container row justify-content-center mx-auto'
-              div.innerHTML = '<button class="qr-option btn mr-1" type="button" onclick="url()" name="button"> <i class="fa fa-globe"></i> url</button> <button class="qr-option btn ml-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>'
+              div.innerHTML = `
+                <button class="qr-option btn mr-1" type="button" onclick="url()" name="button"> <i class="fa fa-globe"></i> url</button>
+                <button class="qr-option btn mr-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>
+                <button class="qr-option btn " type="button" onclick="wifi()" name="button"> <i class="fa fa-wifi"></i> wifi</button> `
               form.append(div)
             }
           </script>
           <div class="container row justify-content-center mx-auto">
             <button class="qr-option btn mr-1" type="button" onclick="url()" name="button"> <i class="fa fa-globe"></i> url</button>
-            <button class="qr-option btn ml-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>
+            <button class="qr-option btn mr-1" type="button" onclick="vcard()" name="button"><i class="fas fa-address-card"></i> vcard</button>
+            <button class="qr-option btn " type="button" onclick="wifi()" name="button"> <i class="fa fa-wifi"></i> wifi</button>
           </div>
           <input class="searchbar col-xs-8 col-md-6" style="height:3rem" type="text" name="qr" placeholder=" > Type whatever string">
           <div class="mt-3">

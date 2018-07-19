@@ -6,7 +6,7 @@ import qrcode, urllib
 @app.route('/qr', methods=['POST', 'GET'])
 def qr():
 	if request.method == 'POST' and request.form:
-		if not 'qr' in request.form:
+		if request.form['type'] == 'vcard':
 			data = "BEGIN:VCARD \nVERSION:2.1\n"
 			if request.form['name'] and request.form['surname']:
 				data += "N:%s;%s\n" % (request.form['surname'], request.form['name'])
@@ -20,6 +20,12 @@ def qr():
 			if request.form['website']:
 				data += "URL:%s\n" % request.form['website']
 			data += "END:VCARD"
+		elif request.form['type'] == 'wifi':
+			data = "WIFI:S:%s;T:%s;P:%s;;" \
+				% (
+					request.form['SSID'],
+					request.form['pass_type'],
+					request.form['password'])
 		else:
 			data = request.form['qr']
 
