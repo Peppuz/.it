@@ -25,7 +25,6 @@ app.config['UPLOAD_FOLDER'] = 'src/uploads/'
 # Modules
 import src.dbapi
 import src.qr
-import src.fdd
 import src.redirects
 
 # ROUTES
