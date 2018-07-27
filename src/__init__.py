@@ -1,4 +1,4 @@
-import json, requests, pymysql.cursors, telegram
+import json, requests, pymysql.cursors, telegram, os
 from datetime import datetime
 from flask import Flask, redirect, url_for, request, render_template, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
