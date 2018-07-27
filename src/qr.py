@@ -1,12 +1,14 @@
 from src import app
 from flask import redirect, render_template, request, send_from_directory, jsonify
-import qrcode, urllib
+import qrcode
+import urllib
 
 # QR Generator
 @app.route('/qr', methods=['POST', 'GET'])
 def qr():
 	if request.method == 'POST' and request.form:
-		if request.form['type'] == 'vcard':
+		print request.form
+		if request.form['name']:
 			data = "BEGIN:VCARD \nVERSION:2.1\n"
 			if request.form['name'] and request.form['surname']:
 				data += "N:%s;%s\n" % (request.form['surname'], request.form['name'])
@@ -20,11 +22,10 @@ def qr():
 			if request.form['website']:
 				data += "URL:%s\n" % request.form['website']
 			data += "END:VCARD"
-		elif request.form['type'] == 'wifi':
+		elif request.form['Wifi Name']:
 			data = "WIFI:S:%s;T:%s;P:%s;;" \
-				% (
-					request.form['SSID'],
-					request.form['pass_type'],
+				% ( request.form['Wifi Name'],
+					request.form['password_type'],
 					request.form['password'])
 		else:
 			data = request.form['qr']
@@ -42,6 +43,5 @@ def qr():
 		img = qr.make_image(fill_color="black", back_color="transparent")
 		img.save(open("src/static/qr/%s.png" % filename,'wb'))
 		img = "qr/%s.png" % filename
-
 		return render_template('qr.html', data=data, img=img)
 	return render_template('qr.html')

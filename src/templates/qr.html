@@ -144,18 +144,19 @@
               let div = document.createElement('div')
               div.classList = "container mx-auto"
 
-              let ssid = get_input("Wifi Name [case sensitive]")
+              let ssid = get_input("Wifi Name")
               let password = get_input("Password")
               let password_type = document.createElement('select')
               password_type.name = 'password_type'
               password_type.classList = 'mx-auto my-1'
-              password_type.innerHTML = ''
-              // TODO: COmplete and add selectables  
+              password_type.innerHTML = '<option value="wpa">WPA</option><option value="wep">WEP</option><option value="none">None</option>'
+              // TODO: COmplete and add selectables
 
               let type_selected = document.createElement('input')
               type_selected.type = 'text'
               type_selected.innerHTML = 'url'
-              type_selected.style.diplay = 'none'
+              type_selected.value = 'wifi'
+              type_selected.style.opacity = '0'
 
               let sub = document.createElement('button')
               sub.type = "submit"
@@ -163,7 +164,7 @@
               sub.classList = "qrcode"
               sub.innerHTML = '<i class="fa fa-qrcode fa-3x"></i>'
 
-              div.append(ssid, password_type, password, sub)
+              div.append(ssid, password_type, password, password_type, sub)
               form.append(div)
             }
 
