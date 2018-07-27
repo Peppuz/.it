@@ -27,6 +27,7 @@ def qr():
 				% ( request.form['Wifi Name'],
 					request.form['password_type'],
 					request.form['password'])
+			print data
 		else:
 			data = request.form['qr']
 
