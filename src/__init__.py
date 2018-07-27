@@ -59,7 +59,8 @@ def print_this():
 @app.route('/download/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename=filename)
+                               filename=filename,
+							   as_attachment=True)
 
 @app.route("/sure", methods=['GET', 'POST'])
 def upload_file():
