@@ -1,6 +1,6 @@
 import json, requests, pymysql.cursors, telegram, os
 from datetime import datetime
-from flask import Flask, redirect, url_for, request, render_template, jsonify, send_from_directory
+from flask import Flask, redirect, url_for, request, render_template, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 
 config = json.load(open('config.json'))
@@ -58,8 +58,7 @@ def print_this():
 
 @app.route('/download/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename=filename,
+    return send_file(app.config['UPLOAD_FOLDER']+filename,
 							   as_attachment=True)
 
 @app.route("/sure", methods=['GET', 'POST'])
