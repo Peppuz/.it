@@ -22,7 +22,7 @@ db = pymysql.connect(
 		cursorclass=pymysql.cursors.DictCursor)
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-app.config['UPLOAD_FOLDER'] = 'src/uploads/'
+app.config['UPLOAD_FOLDER'] = 'uploads/'
 
 
 # Modules
